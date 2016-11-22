@@ -1,6 +1,4 @@
 
-# data<-read.table("wines.csv",sep=",") 
-
 # Function to compute MFA
 mfa1<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
 
@@ -27,15 +25,13 @@ mfa1<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
       }
       i<-i+1
     }
-  }
-    else{
+  }else{
       stop("\nsets value is not correct!")
     }
 
   # ncomps: indicating how many number of components (i.e. factors) are to be extracted
-  if(length(ncomps) != 0){
-    selected_data<-selected_data[1:ncomps,]
-    nrow<-ncomps
+  if(length(ncomps) == 0){
+      ncomps<-nrow
   }
   # scale the data
   if(is.numeric(scale) & length(scale)==1){
@@ -47,8 +43,7 @@ mfa1<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
       sum1<-sum(y[,i]^2)
       X<-cbind(X,y[,i]*scale/sqrt(sum1))
     }
-  }
-  else{
+  }else{
     X<-scale(selected_data,center,scale)
   }
   # step 1 PCA of Each Data Table
@@ -60,8 +55,7 @@ mfa1<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
     {
       if(i==1){
         summation[i]=0
-      }
-      else {
+      }else {
         summation[i]<-sum(N[1:i-1])
       }
     # SVD of each table
@@ -93,13 +87,14 @@ mfa1<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
   }
   # 4) matrix of loadings (factor loadings) = Q
   result<-list(
-    eigen=eigen,
-    common_factor_scores=Factor_scores,
-    partial_factor_scores=P_F,
-    loadings=Q,
-    divide=cumsum(c(c(0),N))+1,
+    eigen=eigen[seq(min(ncomps,length(eigen)))],
+    common_factor_scores=Factor_scores[,seq(ncomps)],
+    partial_factor_scores=P_F[],
+    loadings=Q[,seq(ncomps)],
+    divide=(cumsum(c(c(0),N))+1),
     weight=alpha,
     mass=rep(1/nrow,nrow),
+    dim=ncomps,
     scale_x=X
   )
   class(result) <- "mfa"

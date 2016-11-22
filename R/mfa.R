@@ -101,7 +101,7 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
   P_F<-array()
   dimension<-as.character(1:length(N))
   for (i in 1:length(N)){
-    P_Fi <- length(N)*alpha[i] * X[,(summation[i]+1):(summation[i]+N[i])] %*% Q[(summation[i]+1):(summation[i]+N[i]),]
+    P_Fi <- (length(N)*alpha[i] * X[,(summation[i]+1):(summation[i]+N[i])] %*% Q[(summation[i]+1):(summation[i]+N[i]),])[,1:ncomps]
     attr(P_F,dimension[i])=P_Fi
   }
   # 4) matrix of loadings (factor loadings) = Q

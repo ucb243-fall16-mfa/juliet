@@ -1,3 +1,4 @@
+#Make a summary of the eigenvalue of the mfa 
 summary_eigen<-function(x){
   if(class(x)!="mfa"){
     stop("\n'object' need to be mfa")
@@ -84,8 +85,7 @@ RV_table<-function(dataset,sets){
   result
 }
 
-#We give the original normailized data and the number of block 
-#ro construct the table
+#We give the original normailized data and the number of block to construct the table
 LG<-function(table1,table2){
   a1<-svd(table1)$d[1]
   a2<-svd(table2)$d[1]

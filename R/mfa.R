@@ -1,15 +1,13 @@
 #' @title mfa
-#' @description a brief description
-#' @param data: data that need to be analysed
+#' @description mfa is the main function of MFA package
+#' @param data: The working example consists of a (fictitious) wine tasting experiment.
 #' @export
-#' @return result:...
+#' @return The function will return an object of class "mfa" with eigenvalues, common factor scores matrix, partial factor scores matrix and factor loadings.
 #' @examples \dontrun{
-#' an example}
-
-#data_raw<-read.csv("/stat/wines.csv")
-#data<-data_raw[,2:54]
-#pick1<-list(seq(1,6),seq(7,12),seq(13,18),seq(19,23),seq(24,29),seq(30,34),seq(35,38),seq(39,44),seq(45,49),seq(50,53))
-#review<-mfa(data,pick1,scale=1)
+#' data_raw<-read.csv("data/wines.csv")
+#' data<-data_raw[,2:54]
+#' pick1<-list(seq(1,6),seq(7,12),seq(13,18),seq(19,23),seq(24,29),seq(30,34),seq(35,38),seq(39,44),seq(45,49),seq(50,53))
+#' review<-mfa(data,pick1,scale=1) }
 
 # Function to compute MFA
 mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
@@ -19,9 +17,9 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
 # ncomps: integer indicating the dimension(the number of eigenvalue needed to consider)
 # center: center is simlar to the arugement in the 'scale' function
 # scale:  scale is simlar to the arugement in the 'scale' function
-#         except for scale being a number indicating the scaling is done 
+#         except for scale being a number indicating the scaling is done
 #         by making each variables' standard deviation equal to the number
-  
+
   nrow=nrow(data)
   ncol=0
   for(ele in sets){
@@ -66,7 +64,7 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
     X<-scale(selected_data,center,scale)
   }
   # step 1 PCA of Each Data Table
-    # centering such that its mean=0 
+    # centering such that its mean=0
     summation<-numeric(length(N))
     alpha<-numeric(length(N))
     raw<-NULL
@@ -79,7 +77,7 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
       }
     # SVD of each table
       K<-X[,(summation[i]+1):(summation[i]+N[i])]
-    # the weight of a table is obtained from the first singular value of its PCA 
+    # the weight of a table is obtained from the first singular value of its PCA
       alpha[i]<-1/(svd(K)$d[1]^2)
       raw<-c(raw,rep(alpha[i],N[i]))
     }
@@ -90,8 +88,8 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
   P <- svd(X_new)$u / sqrt(1/nrow)
   Y <- 1/sqrt(raw)
   Y <- diag(Y)
-  Q <- Y %*% svd(X_new)$v  
-  
+  Q <- Y %*% svd(X_new)$v
+
   # 1) vector containing the eigenvalues
   d <- t(P) %*% M %*% X %*% A %*% Q
   eigen <- diag(d)[diag(d)>1E-05]^2

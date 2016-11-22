@@ -22,6 +22,8 @@ here is the example in the paper
 source("../R/mfa.r")
 source('../R/plot.r')
 source('../R/print.r')
+source('../R/bootstrap.r')
+
 #Read the data from file(You may change the path)
 data_raw<-read.csv("../data/wines.csv")
 
@@ -37,12 +39,13 @@ pick2<-list(col_name[1:6],col_name[7:12],col_name[13:18],col_name[19:23],col_nam
             col_name[30:34],col_name[35:38],col_name[39:44],col_name[45:49],col_name[50:53])
 #Construct the object 
 review<-mfa(data,pick1,ncomp=2, scale=1)
-```
 
 # print method
 print.mfa(review)
+
 # plot method
 plot.mfa(review)
+
 #Test the each meathods and functions
 #1.summary_eigen
 test1<-summary_eigen(review)
@@ -61,3 +64,6 @@ test5<-RV(review$scale_x[,seq(review$divide[1],review$divide[2]-1)],
 test6<-LG(review$scale_x[,seq(review$divide[1],review$divide[2]-1)],
           review$scale_x[,seq(review$divide[num_block-1],review$divide[num_block]-1)])
 
+#5. Bootstrap
+bootstrap_ratio = bootstrap.mfa(review, 10)
+```

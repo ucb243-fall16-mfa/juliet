@@ -1,8 +1,27 @@
+#' @title mfa
+#' @description a brief description
+#' @param data: data that need to be analysed
+#' @export
+#' @return result:...
+#' @examples \dontrun{
+#' an example}
+
+#data_raw<-read.csv("/stat/wines.csv")
+#data<-data_raw[,2:54]
+#pick1<-list(seq(1,6),seq(7,12),seq(13,18),seq(19,23),seq(24,29),seq(30,34),seq(35,38),seq(39,44),seq(45,49),seq(50,53))
+#review<-mfa(data,pick1,scale=1)
 
 # Function to compute MFA
-mfa1<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
-
-  # attention: the first line of data should be the name of variables
+mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
+# Arguments:
+# data:   data set(matrix or data frame)
+# sets:   list of vectors indicating the the varaiable(column of data)
+# ncomps: integer indicating the dimension(the number of eigenvalue needed to consider)
+# center: center is simlar to the arugement in the 'scale' function
+# scale:  scale is simlar to the arugement in the 'scale' function
+#         except for scale being a number indicating the scaling is done 
+#         by making each variables' standard deviation equal to the number
+  
   nrow=nrow(data)
   ncol=0
   for(ele in sets){

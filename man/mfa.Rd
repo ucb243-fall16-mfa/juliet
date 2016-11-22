@@ -7,7 +7,11 @@
 mfa(data, sets, ncomps = NULL, center = TRUE, scale = TRUE)
 }
 \arguments{
-\item{data:}{data that need to be analysed}
+\item{data} {data that need to be analysed(matrix or data frame)}
+\item{sets} {list of vectors indicating the sets of variables (i.e. the blocks)}
+\item{ncomps} {integer indicating how many number of components (i.e. factors) are to be extracted}
+\item{center} {either a logical value or a numeric vector of length equal to the number of active variables in the analysis}
+\item{scale} {a logical value,a number or a numeric vector of length equal to the number of active variables in the analysis}
 }
 \value{
 result:...

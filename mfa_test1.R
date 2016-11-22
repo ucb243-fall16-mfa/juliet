@@ -1,13 +1,9 @@
 #Read the data from file(You may change the path)
-data_raw<-read.csv("D:/stat/wines.csv")
+data_raw<-read.csv("~/Github/stat-243-final/data/wines.csv")
 
 #Pick the useful part
 data<-data_raw[,2:54]
 
-# print method
-print.mfa(review)
-# plot method
-plot.mfa(review)
 
 #Make a list store the block division
 pick1<-list(seq(1,6),seq(7,12),seq(13,18),seq(19,23),seq(24,29),
@@ -20,6 +16,11 @@ pick2<-list(col_name[1:6],col_name[7:12],col_name[13:18],col_name[19:23],col_nam
 
 #Construct the object 
 review<-mfa1(data,pick1,scale=1)
+
+# print method
+print.mfa(review)
+# plot method
+plot.mfa(review, dim_plot = c(1,2), cex = 0.8)
 
 #Test the each meathods and functions
 #1.summary_eigen

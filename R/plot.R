@@ -57,8 +57,8 @@ plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
 ###############PLOT common factor scores ####################
   plot(x$common_factor_scores[,dim_plot[1]], x$common_factor_scores[,dim_plot[2]], main = "Common Factor Scores",
        xlab = "1", ylab = "2", bty = "l", type = "n", las = 1,
-       xlim = c(min(x$common_factor_scores[,dim_plot[1]])-0.5, max(x$common_factor_scores[,dim_plot[1]])+0.5),
-       ylim = c(min(x$common_factor_scores[,dim_plot[2]]), max(x$common_factor_scores[,dim_plot[2]])))
+       xlim = c(min(x$common_factor_scores[,1)-0.5, max(x$common_factor_scores[,1)+0.5),
+       ylim = c(min(x$common_factor_scores[,2), max(x$common_factor_scores[,2])))
   text(x$common_factor_scores[,dim_plot[1]], x$common_factor_scores[,dim_plot[2]], labels = factor_text, cex = cex, col = "blue")
   abline(h=0, v=0)
   

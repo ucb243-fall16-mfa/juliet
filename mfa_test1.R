@@ -15,10 +15,10 @@ pick2<-list(col_name[1:6],col_name[7:12],col_name[13:18],col_name[19:23],col_nam
             col_name[30:34],col_name[35:38],col_name[39:44],col_name[45:49],col_name[50:53])
 
 #Construct the object 
-review<-mfa1(data,pick1,scale=1)
+review<-mfa(data,pick1,scale=1)
 
 # print method
-print.mfa(review)
+print.mfa(review, n_assessor = 1)
 # plot method
 plot.mfa(review, dim_plot = c(1,2), cex = 0.8)
 

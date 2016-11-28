@@ -1,7 +1,7 @@
 plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
   # check plotted dimensions
   for (i in 1:2) {
-    if (dim_plot[i] < 0 || dim_plot[i] > 12) {
+    if (dim_plot[i] < 0 || dim_plot[i] > 11) {
       warning("wrong dimesions!\nSet dimesions as default: 1 & 2")
     }
   }
@@ -24,8 +24,7 @@ plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
   # re-scale to 1
   Loadings_std <- sweep(x$loadings, 2, apply(x$loadings, 2, sd), "/")
   # re-scale to eigen-value
-  # notice: dim(loadings) = 12, length(eigen) = 11, so we create eigen[12] = eigen[11]
-  loadings <- sweep(Loadings_std, 2, c(sqrt(x$eigen), sqrt(x$eigen)[length(x$eigen)]), "*")
+  loadings <- sweep(Loadings_std, 2, sqrt(x$eigen), "*")
   # seperate different assessors
   loadings_list <- list(
     "1" = loadings[1:6,],
@@ -55,11 +54,11 @@ plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
 
 ################## PLOT #####################
 ###############PLOT common factor scores ####################
-  plot(x$common_factor_scores[,dim_plot[1]], x$common_factor_scores[,dim_plot[2]], main = "Common Factor Scores",
+  plot(x$common_factor_scores[,1], x$common_factor_scores[,2], main = "Common Factor Scores",
        xlab = "1", ylab = "2", bty = "l", type = "n", las = 1,
        xlim = c(min(x$common_factor_scores[,1])-0.5, max(x$common_factor_scores[,1])+0.5),
        ylim = c(min(x$common_factor_scores[,2]), max(x$common_factor_scores[,2])))
-  text(x$common_factor_scores[,dim_plot[1]], x$common_factor_scores[,dim_plot[2]], labels = factor_text, cex = cex, col = "blue")
+  text(x$common_factor_scores[,1], x$common_factor_scores[,2], labels = factor_text, cex = cex, col = "blue")
   abline(h=0, v=0)
   
 ##############PLOT partial factor scores ONLY #####################

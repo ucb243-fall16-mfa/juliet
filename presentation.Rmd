@@ -23,7 +23,7 @@ options(width=78)
   
   Letian Shi:
   
-  Qianyi Yang: 
+  Qianyi Yang: Shiny app
   
   Xin Wang: R packaging and bootstrap function
   

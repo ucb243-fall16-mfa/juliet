@@ -1,0 +1,35 @@
+---
+title: "Stat 243 Final Project"
+author: "Dan Shen, Letian Shi, Qianyi Yang, Xin Wang, Yue You"
+subtitle: Multiple Factor Analysis R package
+output:
+  slidy_presentation: default
+  html_document: default
+  ioslides_presentation: default
+  beamer_presentation:
+    includes:
+      in_header: header.tex
+---
+
+```{r, setup, include=FALSE}
+library(knitr)
+# smaller font size for chunks
+knitr::opts_chunk$set(size = 'footnotesize')
+options(width=78)
+```
+# Task allocation
+
+  Dan Shen: mfa function 
+  
+  Letian Shi:
+  
+  Qianyi Yang: 
+  
+  Xin Wang:
+  
+  Yue You:
+
+# Multiple Factor Analysis  
+  What is MFA? 
+  
+# MFA package introduction

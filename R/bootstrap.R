@@ -1,11 +1,11 @@
 #' @title bootstrap.mfa
-#' @description a brief description
+#' @description this function allows user to determine the stability of the method with bootstrap
 #' @param X: a mfa object
 #' @param L: number of bootstrap samples are computed
 #' @export
 #' @return bootstrap ratio
 #' @examples \dontrun{
-#' an example}
+#' bootstrap.mfa(mfa_obj, 10)}
 
 
 bootstrap.mfa <- function(X, L){

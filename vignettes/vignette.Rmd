@@ -1,6 +1,6 @@
 ---
 title: "Multiple factor analysis package"
-author: "Xin Wang..."
+author: "Dan Shen, Letian Shi, Xin Wang, Qianyi Yang, Yue You"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

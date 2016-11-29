@@ -99,15 +99,16 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
   P_F<-array()
   dimension<-as.character(1:length(N))
   for (i in 1:length(N)){
-    P_Fi <- (length(N)*alpha[i] * X[,(summation[i]+1):(summation[i]+N[i])] %*% Q[(summation[i]+1):(summation[i]+N[i]),])[,1:ncomps]
+    P_Fi <- (length(N)*alpha[i] * X[,(summation[i]+1):(summation[i]+N[i])] %*% Q[(summation[i]+1):(summation[i]+N[i]),])[,1:ncomps-1]
     attr(P_F,dimension[i])=P_Fi
   }
+  
   # 4) matrix of loadings (factor loadings) = Q
   result<-list(
     eigen=eigen[seq(min(ncomps,length(eigen)))],
     common_factor_scores=Factor_scores[,seq(ncomps)],
     partial_factor_scores=P_F[],
-    loadings=Q[,seq(ncomps)],
+    loadings=Q[,seq(ncomps-1)],
     divide=(cumsum(c(c(0),N))+1),
     weight=alpha,
     mass=rep(1/nrow,nrow),
@@ -117,6 +118,3 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
   class(result) <- "mfa"
   return(result)
 }
-
-
-

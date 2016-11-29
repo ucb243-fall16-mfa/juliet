@@ -42,9 +42,9 @@ review<-mfa(data,pick1,ncomp=2, scale=1)
 
 # print method
 print.mfa(review)
-
+```
 # plot method
-plot.mfa(review)
+plot.mfa(review, dim_plot=c(1,2), cex=0,8)
 
 #Test the each meathods and functions
 #1.summary_eigen

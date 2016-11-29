@@ -33,5 +33,5 @@ fsb = function(PFS){
   }
   FS_B = 1/length(B)*FS_B
 }
-FSB = bootstrap.mfa(review, 10)
-FSB
+#FSB = bootstrap.mfa(review, 10)
+#FSB

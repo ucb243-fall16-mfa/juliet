@@ -4,13 +4,15 @@
 \alias{bootstrap.mfa}
 \title{bootstrap.mfa}
 \usage{
-bootstrap.mfa(X)
+bootstrap.mfa(X, L)
 }
 \arguments{
 \item{X:}{a mfa object}
+
+\item{L:}{number of bootstrap samples are computed}
 }
 \value{
-result:...
+bootstrap ratio
 }
 \description{
 a brief description

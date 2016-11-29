@@ -7,20 +7,19 @@
 mfa(data, sets, ncomps = NULL, center = TRUE, scale = TRUE)
 }
 \arguments{
-\item{data} {data that need to be analysed(matrix or data frame)}
-\item{sets} {list of vectors indicating the sets of variables (i.e. the blocks)}
-\item{ncomps} {integer indicating how many number of components (i.e. factors) are to be extracted}
-\item{center} {either a logical value or a numeric vector of length equal to the number of active variables in the analysis}
-\item{scale} {a logical value,a number or a numeric vector of length equal to the number of active variables in the analysis}
+\item{data:}{The working example consists of a (fictitious) wine tasting experiment.}
 }
 \value{
-result:...
+The function will return an object of class "mfa" with eigenvalues, common factor scores matrix, partial factor scores matrix and factor loadings.
 }
 \description{
-a brief description
+mfa is the main function of MFA package
 }
 \examples{
 \dontrun{
-an example}
+data_raw<-read.csv("data/wines.csv")
+data<-data_raw[,2:54]
+pick1<-list(seq(1,6),seq(7,12),seq(13,18),seq(19,23),seq(24,29),seq(30,34),seq(35,38),seq(39,44),seq(45,49),seq(50,53))
+review<-mfa(data,pick1,scale=1) }
 }
 

@@ -39,3 +39,13 @@ test5<-RV(review$scale_x[,seq(review$divide[1],review$divide[2]-1)],
 #4.LG
 test6<-LG(review$scale_x[,seq(review$divide[1],review$divide[2]-1)],
           review$scale_x[,seq(review$divide[num_block-1],review$divide[num_block]-1)])
+
+# bootstap
+# packages needed for graphs
+# install.packages("ellipse")
+library(ellipse)
+library(ggplot2)
+## get bootstap results
+bootstrap.mfa(review, 10)
+## plot bootstrap results
+plot.boostrap(review,10)

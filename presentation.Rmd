@@ -33,3 +33,15 @@ options(width=78)
   What is MFA? 
   
 # MFA package introduction
+
+# Shiny App
+We develop a shiny app that provides an interactive visualizeation for the results from MFA. We provide
+the user with four types of plots, and the user can select which plot to look at.
+
+  - *a bar-chart of the eigenvalues* 
+  - *a scatterplot of the common factor scores* 
+  - *a scatter plot of the partial factor scores* 
+  - *a scatter plot of the partial factor scores and the loadings* 
+
+For scatter plot (3) and (4), the user can choose which two dimensions to plot by adjusting the slider bar, and the
+plots will update automatically.

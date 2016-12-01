@@ -7,7 +7,15 @@
 mfa(data, sets, ncomps = NULL, center = TRUE, scale = TRUE)
 }
 \arguments{
-\item{data:}{The working example consists of a (fictitious) wine tasting experiment.}
+\item{data:}{data set(matrix or data frame)}
+
+\item{sets:}{list of vectors indicating the sets of the varaiables (column of data)}
+
+\item{ncomps:}{integer indicating the dimension (the number of eigenvalue needed to consider)}
+
+\item{center:}{center is simlar to the arugement in the 'scale' function}
+
+\item{scale:}{either a logical value or a numeric vector of length equal to the number of active variables in the analysis}
 }
 \value{
 The function will return an object of class "mfa" with eigenvalues, common factor scores matrix, partial factor scores matrix and factor loadings.

@@ -20,8 +20,8 @@ review<-mfa(data,pick1)
 # print method
 print.mfa(review, n_assessor = 1)
 # plot method
+plot.mfa(review, dim_plot = c(1,2), cex = 0.8, mfrow_input = c(5,2))
 plot.mfa(review, dim_plot = c(1,2), cex = 0.8)
-
 #Test the each meathods and functions
 #1.summary_eigen
 test1<-summary_eigen(review)

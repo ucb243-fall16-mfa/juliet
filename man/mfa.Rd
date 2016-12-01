@@ -20,6 +20,6 @@ mfa is the main function of MFA package
 data_raw<-read.csv("data/wines.csv")
 data<-data_raw[,2:54]
 pick1<-list(seq(1,6),seq(7,12),seq(13,18),seq(19,23),seq(24,29),seq(30,34),seq(35,38),seq(39,44),seq(45,49),seq(50,53))
-review<-mfa(data,pick1,scale=1) }
+review<-mfa(data,pick1)}
 }
 

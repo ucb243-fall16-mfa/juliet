@@ -29,9 +29,27 @@ options(width=78)
   
   Yue You:
 
-# Multiple Factor Analysis  
-  What is MFA? 
+# Main function: mfa-part 1
+We provide a main function mfa() in our package:
+    
+  _mfa(data, sets, ncomps=NULL, center=TRUE, scale=TRUE)_ where the arguments are:
   
+- data: data set (matrix or data frame)
+- sets: list of character or numeric vectors indicating the sets of variables 
+- ncomps: integer indicating how many factors are to be extracted
+- center: either a logical value or a numeric vector determining how column centering is perfromed
+- scale: either a logical value or a numeric vector determining how the scaling of active variables is performed (after centering)
+
+# Main function: mfa-part 2
+mfa function should return on object of class *"mfa"* with the following elements:
+
+- eigen: vector containing the eigenvalues 
+- common_factor_scores: matrix of common factor scores
+- partial_factor_scores: matrix of partial factor scores
+- loadings: matrix of loadings
+    
+we also provide other information such as alpha, mass=rep(1/nrow,nrow), dim=ncomps and the complete scaled matrix for the user.
+   
 # MFA package introduction
 
 # Shiny App

@@ -4,7 +4,7 @@ library(ggplot2)
 library(ellipse)
 
 ##Read in data
-dir<-"C:/Users/yangq_000/Google Drive/Berkeley/Courses/STATS 243 Statistical Computing/Final Project"
+dir<-".../STATS 243 Statistical Computing/Final Project"
 source(paste(dir,"Work/mfa.R",sep="/"))
 
 #Read the data from file(You may change the path)

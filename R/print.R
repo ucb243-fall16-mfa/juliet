@@ -1,3 +1,12 @@
+#' @title print.mfa
+#' @description print 4 tables containing eigen values, common factor scores, partial facotr scores, and loadings.
+#' @param x: data set(class should be mfa)
+#' @param n_assessor: integer between 1 to 10 indicating the number of the chosen assessor.
+#' @export
+#' @return 4 tables
+#' @examples \dontrun{
+#' print.mfa(review, n_assessor = 1)}
+
 print.mfa <- function(x, n_assessor = 1, ...) {
   # check input dataset class
   if(class(x) != "mfa") {

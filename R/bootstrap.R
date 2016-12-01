@@ -1,5 +1,3 @@
-# packages needed for graphs
-# install.packages("ellipse")
 library(ellipse)
 library(ggplot2)
 

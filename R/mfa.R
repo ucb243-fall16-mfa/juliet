@@ -7,26 +7,24 @@
 #' data_raw<-read.csv("data/wines.csv")
 #' data<-data_raw[,2:54]
 #' pick1<-list(seq(1,6),seq(7,12),seq(13,18),seq(19,23),seq(24,29),seq(30,34),seq(35,38),seq(39,44),seq(45,49),seq(50,53))
-#' review<-mfa(data,pick1,scale=1) }
+#' review<-mfa(data,pick1)}
 
 # Function to compute MFA
 mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
 # Arguments:
 # data:   data set(matrix or data frame)
-# sets:   list of vectors indicating the the varaiable(column of data)
-# ncomps: integer indicating the dimension(the number of eigenvalue needed to consider)
+# sets:   list of vectors indicating the sets of the varaiables (column of data)
+# ncomps: integer indicating the dimension (the number of eigenvalue needed to consider)
 # center: center is simlar to the arugement in the 'scale' function
-# scale:  scale is simlar to the arugement in the 'scale' function
-#         except for scale being a number indicating the scaling is done
-#         by making each variables' standard deviation equal to the number
+# scale:  either a logical value or a numeric vector of length equal to the number of active variables in the analysis
 
   nrow=nrow(data)
+  # calculate ncol
   ncol=0
   for(ele in sets){
     ncol<-ncol+length(ele)
   }
-  # if SETS is a list of numeric vectors with the position of the active variables in the data table
-  # if sets is a list of character vectors with the names of the active variables
+  # if sets is a list of numeric vectors with the position of the active variables in the data table or a list of character vectors with the names of the active variables
   if (is.numeric(unlist(sets)) | is.character(unlist(sets))){
     selected_data<-matrix(numeric(ncol*nrow),ncol=ncol,nrow=nrow)
     # N is the vector to store the ncol of each sub-matrix
@@ -50,21 +48,22 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
   if(length(ncomps) == 0){
       ncomps<-nrow
   }
+
   # scale the data
-  if(is.numeric(scale) & length(scale)==1){
-    y<-scale(selected_data,center = TRUE,FALSE)
+  scale_data<-scale(selected_data,center,scale)
+
+  # step 1 PCA of Each Data Table
+
+    # centering such that its mean=0
+    y<-scale(scale_data,center = TRUE,FALSE)
     X<-NULL
     # normalizing each column such that the sum of the square values of all its elements is equal to 1
     for (i in 1:length(y[1,]))
     {
       sum1<-sum(y[,i]^2)
-      X<-cbind(X,y[,i]*scale/sqrt(sum1))
+      X<-cbind(X,y[,i]/sqrt(sum1))
     }
-  }else{
-    X<-scale(selected_data,center,scale)
-  }
-  # step 1 PCA of Each Data Table
-    # centering such that its mean=0
+
     summation<-numeric(length(N))
     alpha<-numeric(length(N))
     raw<-NULL
@@ -102,7 +101,7 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
     P_Fi <- (length(N)*alpha[i] * X[,(summation[i]+1):(summation[i]+N[i])] %*% Q[(summation[i]+1):(summation[i]+N[i]),])[,1:ncomps-1]
     attr(P_F,dimension[i])=P_Fi
   }
-  
+
   # 4) matrix of loadings (factor loadings) = Q
   result<-list(
     eigen=eigen[seq(min(ncomps,length(eigen)))],

@@ -93,6 +93,7 @@ Graphs:
 - Graph 2: Bootstrap confidence ellipses plotted on Components 1 and 2.
 
 # MFA package introduction
+This project is implemented in the form of an R package which provides R functions, user manuel, tests, as well as vignettes. This package is set up on github for collaboration and will be available for public use.
 
 # Shiny App
 We develop a shiny app that provides an interactive visualizeation for the results from MFA. We provide

@@ -24,7 +24,17 @@ fsb = function(PFS){
 #' @examples \dontrun{
 #' an example}
 
-bootstrap.mfa <- function(X, L){
+bootstrap.mfa <- function(X, L = 10){
+#############check input values####################
+  # check input dataset
+  if(class(X) != "mfa") {
+    stop("Wrong class of data!\nClass should be 'mfa'.")
+  }
+  # check input number of samples L
+    if (L <= 0 || L %% 1 != 0) {
+      stop("Wrong sample size L!\nL should be positive integers.")
+    }
+##############main function#########################
   #FS: factor scores of the initial data tablesi
   #compute the bootstrapped estimate of the factor scores
   PFS = attributes(X$partial_factor_scores)
@@ -50,6 +60,15 @@ bootstrap.mfa <- function(X, L){
 #' an example}
 
 plot.boostrap <- function(X, L) {
+#############check input values####################
+  # check input dataset
+  if(class(X) != "mfa") {
+    stop("Wrong class of data!\nClass should be 'mfa'.")
+  }
+  # check input number of samples L
+  if (L <= 0 || L %% 1 != 0) {
+    stop("Wrong sample size L!\nL should be positive integers.")
+  }
 ############# plot bar plot ###################
   two_graph <- par(mfrow=c(1,2))
   FSB = bootstrap.mfa(X, L)$FSB

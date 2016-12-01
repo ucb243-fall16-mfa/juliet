@@ -19,7 +19,7 @@ options(width=78)
 ```
 # Task allocation
 
-  Dan Shen: mfa function 
+  Dan Shen: mfa function and presentation
   
   Letian Shi: related methods and function/mfa function
   
@@ -27,8 +27,19 @@ options(width=78)
   
   Xin Wang: R packaging and bootstrap function
   
-  Yue You:
+  Yue You: Generic methods and plotting graphs in bootstrap function
 
+# What is MFA?
+Multiple factor analysis is an extension of principal component analysis (PCA) and aims to handle data set that measures sets of variables collected on the same observations.
+
+- step 1: PCA of Each Data Table
+
+  Each table is analyzed via a standard PCA. The weight of a table is obtained from the first singular value of its PCA. 
+  
+- step 2: GSVD of X
+
+  All the normalized data tables are aggregated into a grand data table X that is analyzed via GSVD. This analysis will give a set of factor scores for the observations and loadings for the variables.
+  
 # Main function: mfa-part 1
 We provide a main function mfa() in our package:
     
@@ -49,7 +60,29 @@ mfa function should return on object of class *"mfa"* with the following element
 - loadings: matrix of loadings
     
 we also provide other information such as alpha, mass=rep(1/nrow,nrow), dim=ncomps and the complete scaled matrix for the user.
-   
+
+# Generic Methods   
+print() method: displays 3 tables of basic information:
+
++ Table 1: Singular Values and Eigen Values;
++ Table 2. First Two Dimensions of Common Factor Scores;
++ Table 3. Partial Factor Scores of Any Assessor.
+
+plot() method: displays 4 graphs with users' choice of any two dimenstions:
+
++ Graph 1: Common Factor Scores;
++ Graph 2: Partial Factor Scores;
++ Graph 3: Loadings rescaled to variance = eigen values;
++ Graph 4: Partial Factor Scores & rescaled Loadings together.
+
+# Bootstrap
+Function:
+
+Graphs:
+
+- Graph 1: Bootstrap ratio plot for Components 1 and 2.
+- Graph 2: Bootstrap confidence ellipses plotted on Components 1 and 2.
+
 # MFA package introduction
 
 # Shiny App

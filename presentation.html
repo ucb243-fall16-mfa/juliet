@@ -21,11 +21,23 @@ Dan Shen, Letian Shi, Qianyi Yang, Xin Wang, Yue You
 </div>
 <div id="task-allocation" class="slide section level1">
 <h1>Task allocation</h1>
-<p>Dan Shen: mfa function</p>
-<p>Letian Shi:</p>
+<p>Dan Shen: mfa function and presentation</p>
+<p>Letian Shi: related methods and function/mfa function</p>
 <p>Qianyi Yang: Shiny app</p>
 <p>Xin Wang: R packaging and bootstrap function</p>
-<p>Yue You:</p>
+<p>Yue You: Generic methods and plotting graphs in bootstrap function</p>
+</div>
+<div id="what-is-mfa" class="slide section level1">
+<h1>What is MFA?</h1>
+<p>Multiple factor analysis is an extension of principal component analysis (PCA) and aims to handle data set that measures sets of variables collected on the same observations.</p>
+<ul>
+<li>step 1: PCA of Each Data Table</li>
+</ul>
+<p>Each table is analyzed via a standard PCA. The weight of a table is obtained from the first singular value of its PCA.</p>
+<ul>
+<li>step 2: GSVD of X</li>
+</ul>
+<p>All the normalized data tables are aggregated into a grand data table X that is analyzed via GSVD. This analysis will give a set of factor scores for the observations and loadings for the variables.</p>
 </div>
 <div id="main-function-mfa-part-1" class="slide section level1">
 <h1>Main function: mfa-part 1</h1>
@@ -50,19 +62,46 @@ Dan Shen, Letian Shi, Qianyi Yang, Xin Wang, Yue You
 </ul>
 <p>we also provide other information such as alpha, mass=rep(1/nrow,nrow), dim=ncomps and the complete scaled matrix for the user.</p>
 </div>
+<div id="generic-methods" class="slide section level1">
+<h1>Generic Methods</h1>
+<p>print() method: displays 3 tables of basic information:</p>
+<ul>
+<li>Table 1: Singular Values and Eigen Values;</li>
+<li>Table 2. First Two Dimensions of Common Factor Scores;</li>
+<li>Table 3. Partial Factor Scores of Any Assessor.</li>
+</ul>
+<p>plot() method: displays 4 graphs with users’ choice of any two dimenstions:</p>
+<ul>
+<li>Graph 1: Common Factor Scores;</li>
+<li>Graph 2: Partial Factor Scores;</li>
+<li>Graph 3: Loadings rescaled to variance = eigen values;</li>
+<li>Graph 4: Partial Factor Scores &amp; rescaled Loadings together.</li>
+</ul>
+</div>
+<div id="bootstrap" class="slide section level1">
+<h1>Bootstrap</h1>
+<p>Function:</p>
+<p>Graphs:</p>
+<ul>
+<li>Graph 1: Bootstrap ratio plot for Components 1 and 2.</li>
+<li>Graph 2: Bootstrap confidence ellipses plotted on Components 1 and 2.</li>
+</ul>
+</div>
 <div id="mfa-package-introduction" class="slide section level1">
 <h1>MFA package introduction</h1>
 </div>
 <div id="shiny-app" class="slide section level1">
 <h1>Shiny App</h1>
-<p>We develop a shiny app that provides an interactive visualizeation for the results from MFA. We provide the user with four types of plots, and the user can select which plot to look at.</p>
+<p>We develop a shiny app that provides an interactive visualizeation for the results from MFA. We provide the user with six types of plots, and the user can select which plot to look at.</p>
 <ul>
 <li><em>a bar-chart of the eigenvalues</em></li>
 <li><em>a scatterplot of the common factor scores</em></li>
 <li><em>a scatter plot of the partial factor scores</em></li>
 <li><em>a scatter plot of the partial factor scores and the loadings</em></li>
+<li><em>a bar-chart of bootstrap ratios</em></li>
+<li><em>a bootstrap confidence ellipses plot</em></li>
 </ul>
-<p>For scatter plot (3) and (4), the user can choose which two dimensions to plot by adjusting the slider bar, and the plots will update automatically.</p>
+<p>For the two scatter plots related to partial factor scores and loadings, the user can choose which two dimensions to plot by adjusting the slider bar, and the plots will update automatically.</p>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->

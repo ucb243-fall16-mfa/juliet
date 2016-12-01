@@ -20,7 +20,7 @@ fsb = function(PFS){
 #' @param X: a mfa object
 #' @param L: number of bootstrap samples are computed
 #' @export
-#' @return bootstrap ratio
+#' @return bootstrap estimates and bootstrap ratio
 #' @examples \dontrun{
 #' an example}
 
@@ -56,7 +56,7 @@ plot.boostrap <- function(X, L) {
   FSBs = bootstrap.mfa(X, L)$FSBs
   # set laebls
   labels <- rev(c("NZ 1", "NZ 2", "NZ 3", "NZ 4",
-                  "FR 1", "FR 2", "FR 3", "FR 4", 
+                  "FR 1", "FR 2", "FR 3", "FR 4",
                   "CA 1", "CA 2", "CA 3", "CA 4"))
   # set colors
   for (j in 1:2) {
@@ -82,13 +82,13 @@ plot.boostrap <- function(X, L) {
       locations_m[i, ] <- c(FSBs[k, 1:2, i-(k-1)*L], k)
     }
   }
-  
+
   colnames(locations_m) <- c("dim1","dim2", "wine_id")
   # convert matrix to data.frame
   locations <- as.data.frame(locations_m)
   # set plot parameters
   centroids <- aggregate(cbind(locations$dim1,locations$dim2)~locations$wine_id,locations,mean)
-  conf.rgn  <- do.call(rbind,lapply(unique(locations$wine_id),function(t) 
+  conf.rgn  <- do.call(rbind,lapply(unique(locations$wine_id),function(t)
     data.frame(wine_id=as.character(t),
                ellipse(cov(locations[locations$wine_id==t,1:2]),
                        centre=as.matrix(centroids[t,2:3]),
@@ -104,5 +104,5 @@ plot.boostrap <- function(X, L) {
     scale_colour_discrete(name  ="Wine",
                           breaks=1:12,
                           labels=rev(labels))
-  
+
 }

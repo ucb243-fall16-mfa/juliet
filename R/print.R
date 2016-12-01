@@ -40,4 +40,4 @@ print.mfa <- function(x, n_assessor = 1, ...) {
   cat("\nTable 4. First 10 items in First Two Dimensions of Loadings\n\n")
   print(table4)
 }
-print.mfa(review)
+

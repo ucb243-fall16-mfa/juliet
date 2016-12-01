@@ -1,4 +1,4 @@
-#Make a summary of the eigenvalue of the mfa 
+#Make a summary of the eigenvalue of the mfa
 summary_eigen<-function(x){
   if(class(x)!="mfa"){
     stop("\n'object' need to be mfa")
@@ -20,14 +20,14 @@ contribution<-function(x,type){
     stop("\n'object' need to be mfa")
   }
   if(type=="observation"){
-    summation=colSums(x$common_factor_scores^2  %*% diag(x$mass))
-    percent=apply(x$common_factor_scores,1,function(y) y^2*(x$mass)/summation)
+    summation=colSums(diag(x$mass)[1:x$dim,] %*% x$common_factor_scores^2)
+    percent=apply(x$common_factor_scores,1,function(y) y^2*(x$mass)[1:x$dim]/summation)[,1:x$dim]
     colnames(percent)<-paste0(rep("dim",length(percent[1,])),seq(length(percent[1,])))
     rownames(percent)<-paste0(rep("ob",length(percent[,1])),seq(length(percent[,1])))
     round(percent,3)
   }
   else if(type=="variable"){
-    percent=diag(rep(x$weight,diff(x$divide))) %*% x$loadings^2  
+    percent=diag(rep(x$weight,diff(x$divide))) %*% x$loadings^2
     colnames(percent)<-paste0(rep("dim",length(percent[1,])),seq(length(percent[1,])))
     rownames(percent)<-paste0(rep("vr",length(percent[,1])),seq(length(percent[,1])))
     percent

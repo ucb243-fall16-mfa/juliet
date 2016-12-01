@@ -26,7 +26,8 @@ plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, mfrow_input = c(2,5), ...)
   if (cex <= 0) stop("Wrong cex values!\nCex should be positive.")
   # check mfrow: how many graphs in a row/col
   for (i in 1:2) {
-    if (mfrow_input[i] < 0 || mfrow_input[i] > 5 || mfrow_input[i] %% 1 != 0) {
+    if (mfrow_input != c(1,10) && mfrow_input != c(10,1) &&
+        mfrow_input != c(2,5) && mfrow_input != c(5,2)) {
       stop("Wrong mfrow input values!\nmfrows should be integers between 1 to 5.")
     }
   }

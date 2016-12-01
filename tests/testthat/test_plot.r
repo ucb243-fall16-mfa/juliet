@@ -13,10 +13,5 @@ pick2<-list(col_name[1:6],col_name[7:12],col_name[13:18],col_name[19:23],col_nam
             col_name[30:34],col_name[35:38],col_name[39:44],col_name[45:49],col_name[50:53])
 #Construct the object
 review<-mfa(data,pick1)
-# test bootstrap input
-set.seed(1)
-test_that('functionality', bootstrap.mfa(review, 10))
-bootstrap_ratio = bootstrap.mfa(review, 10)
-ref_ratio = -23.80556
-test_that('bootstrap ratio values',
-          {all.equal(bootstrap_ratio$FSB[1,1], ref_ratio)})
+# test
+test_that('functionality', plot.mfa(review, dim_plot = c(1,2), cex = 0.8))

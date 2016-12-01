@@ -1,10 +1,18 @@
 plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
-  # check plotted dimensions
+######################check input######################
+  # check input dataset
+  if(class(x) != "mfa") {
+    stop("Wrong class of data!\nClass should be 'mfa'.")
+  }
+  # check input dimensions
   for (i in 1:2) {
-    if (dim_plot[i] < 0 || dim_plot[i] > 11) {
-      warning("wrong dimesions!\nSet dimesions as default: 1 & 2")
+    if (dim_plot[i] < 0 || dim_plot[i] > 11 || dim_plot[i] %% 1 != 0) {
+      stop("Wrong dimesion values!\nDimensions should be integers between 1 to 11.")
     }
   }
+  # check size of points
+  if (cex <= 0) stop("Wrong cex values!\nCex should be positive.")
+    
 ##################set labels for factor plots###############################
   factor_text <- NULL
   size_subsample <- dim(x$common_factor_scores)[1] / 3

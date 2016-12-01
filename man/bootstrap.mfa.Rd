@@ -18,7 +18,6 @@ bootstrap estimates and bootstrap ratio
 main function of bootstrap
 }
 \examples{
-\dontrun{
-an example}
+\dontrun{bootstrap.mfa(mfa.obj, 1000)}
 }
 

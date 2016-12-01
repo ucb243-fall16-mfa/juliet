@@ -21,8 +21,8 @@ fsb = function(PFS){
 #' @param L: number of bootstrap samples are computed
 #' @export bootstrap.mfa
 #' @return bootstrap estimates and bootstrap ratio
-#' @examples \dontrun{
-#' an example}
+#' @examples \dontrun{bootstrap.mfa(mfa.obj, 1000)}
+
 
 bootstrap.mfa <- function(X, L = 10){
 #############check input values####################

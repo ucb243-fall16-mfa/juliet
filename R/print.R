@@ -20,11 +20,11 @@ print.mfa <- function(x, n_assessor = 1, ...) {
   eigen_values = x$eigen
   singular_values = sqrt(eigen_values)
   table1 = round(as.data.frame(rbind(singular_values, eigen_values)), 3)
-  cat("Table 1. Head of Singular Values and Eigen Values\n")
+  cat("\nTable 1. Singular Values and Eigen Values\n\n")
   print(table1)
   # 2) print table2 of common factor scores
   table2 = round(cbind(x$common_factor_scores[,1], x$common_factor_scores[,2]),3)
-  cat("\nTable 2. First Two Dimensions of Common Factor Scores\n")
+  cat("\nTable 2. First Two Dimensions of Common Factor Scores\n\n")
   print(table2)
   # 3) print table3 of partial factor scores
   # extract partial factor scores
@@ -33,7 +33,11 @@ print.mfa <- function(x, n_assessor = 1, ...) {
   # get the partial factor scores for Assessor n_assessor
   table3 = round(cbind(partial_factor_scores[[n_assessor]][,1],
                        partial_factor_scores[[n_assessor]][,2]),3)
-  cat("\nTable 3. Partial Factor Scores of Assessor", n_assessor, "\n")
+  cat("\nTable 3. Partial Factor Scores of Assessor", n_assessor, "\n\n")
   print(table3)
+  # 4) print table4 of loadings
+  table4 = round(cbind(x$loadings[1:10,1], x$loadings[1:10,2]),3)
+  cat("\nTable 4. First 10 items in First Two Dimensions of Loadings\n\n")
+  print(table4)
 }
-
+print.mfa(review)

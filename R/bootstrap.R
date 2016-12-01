@@ -19,7 +19,7 @@ fsb = function(PFS){
 #' @description main function of bootstrap
 #' @param X: a mfa object
 #' @param L: number of bootstrap samples are computed
-#' @export
+#' @export bootstrap.mfa
 #' @return bootstrap estimates and bootstrap ratio
 #' @examples \dontrun{
 #' an example}

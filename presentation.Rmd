@@ -76,7 +76,16 @@ plot() method: displays 4 graphs with users' choice of any two dimenstions:
 + Graph 4: Partial Factor Scores & rescaled Loadings together.
 
 # Bootstrap
-Function:
+Bootstrap.mfa(X, L) method: computes the bootstrapped eatimate of the factor scores as well as the bootstrap ratio
+The input parameters are:
+
+- X: a MFA object
+- L: the bootstrap sample size
+
+The output information contains:
+
+- All the bootstrapped factore scores
+- Bootstrap ratio
 
 Graphs:
 

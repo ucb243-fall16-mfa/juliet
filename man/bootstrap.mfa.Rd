@@ -12,7 +12,7 @@ bootstrap.mfa(X, L)
 \item{L:}{number of bootstrap samples are computed}
 }
 \value{
-bootstrap ratio
+bootstrap estimates and bootstrap ratio
 }
 \description{
 main function of bootstrap

@@ -31,10 +31,6 @@ plot_eigen<-function(x){
   x<-review
   ggplot(data,aes(x=Component,y=Eigenvalue))+geom_bar(stat="identity",color="black",fill="blue")+labs(title
                 ="Eigenvalue Bar-chart")
-  #ggplotly(p)
-  
-  #plot_ly(data,x=~Component,y=~Eigenvalue,type="bar") %>%
-   # layout(title="Eigenvalues Bar-chart")
 }
 
 #plot_eigen(review)

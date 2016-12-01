@@ -3,7 +3,7 @@ Type: Package
 Title: Multiple factor analysis
 Version: 0.1
 Date: 2016-11-18
-Author: Dan Shen, Letian Shi, Xin Wang, Qianyi Yang, Qianyi Yang
+Author: Dan Shen, Letian Shi, Xin Wang, Qianyi Yang, Yue You
 Maintainer: Xin Wang <imwangxin@gmail.com>
 Description: This package does multiple factor analysis
 License: GPL-2

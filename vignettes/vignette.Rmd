@@ -44,7 +44,7 @@ print.mfa(review)
 ```
 ### plot method
 ```{r}
-plot.mfa(review, dim_plot=c(1,2), cex=0.8)
+#plot.mfa(review, dim_plot=c(1,2), cex=0.8)
 ```
 ### Additional method to analyse the MFA object
 ####1.summary_eigen

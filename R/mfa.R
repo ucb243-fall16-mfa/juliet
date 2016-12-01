@@ -55,7 +55,7 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
   # step 1 PCA of Each Data Table
 
     # centering such that its mean=0
-    y<-scale(scale_data,center = TRUE,FALSE)
+    y<-scale(scale_data,center = center,FALSE)
     X<-NULL
     # normalizing each column such that the sum of the square values of all its elements is equal to 1
     for (i in 1:length(y[1,]))

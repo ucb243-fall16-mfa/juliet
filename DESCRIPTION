@@ -8,11 +8,12 @@ Maintainer: Xin Wang <imwangxin@gmail.com>
 Description: This package does multiple factor analysis
 License: GPL-2
 LazyData: TRUE
+Imports:
+   ellipse,
+   ggplot2
 Suggests:
     knitr,
     rmarkdown,
-    testthat,
-    ggplot2,
-    ellipse
+    testthat
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr

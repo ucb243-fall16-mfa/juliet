@@ -28,3 +28,20 @@ print.mfa(review)
 ## ------------------------------------------------------------------------
 test1<-summary_eigen(review)
 
+## ------------------------------------------------------------------------
+#test2<-contribution(review,type="observation")
+#test3<-contribution(review,type="variable")
+#test4<-contribution(review,type="table")
+
+## ------------------------------------------------------------------------
+num_block<-length(review$weight)
+test5<-RV(review$scale_x[,seq(review$divide[1],review$divide[2]-1)],
+          review$scale_x[,seq(review$divide[num_block-1],review$divide[num_block]-1)])
+
+## ------------------------------------------------------------------------
+test6<-LG(review$scale_x[,seq(review$divide[1],review$divide[2]-1)],
+          review$scale_x[,seq(review$divide[num_block-1],review$divide[num_block]-1)])
+
+## ------------------------------------------------------------------------
+bootstrap_ratio = bootstrap.mfa(review, 10)
+

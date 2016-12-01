@@ -1,3 +1,18 @@
+#' @title plot
+#' @description
+#' @param data: data set(matrix or data frame)
+#' @param sets: list of vectors indicating the sets of the varaiables (column of data)
+#' @param ncomps: integer indicating the dimension (the number of eigenvalue needed to consider)
+#' @param center: center is simlar to the arugement in the 'scale' function
+#' @param scale: either a logical value or a numeric vector of length equal to the number of active variables in the analysis
+#' @export
+#' @return The function will return an object of class "mfa" with eigenvalues, common factor scores matrix, partial factor scores matrix and factor loadings.
+#' @examples \dontrun{
+#' data_raw<-read.csv("data/wines.csv")
+#' data<-data_raw[,2:54]
+#' pick1<-list(seq(1,6),seq(7,12),seq(13,18),seq(19,23),seq(24,29),seq(30,34),seq(35,38),seq(39,44),seq(45,49),seq(50,53))
+#' review<-mfa(data,pick1)}
+
 plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, mfrow_input = c(2,5), ...) {
 ######################check input######################
   # check input dataset

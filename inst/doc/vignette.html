@@ -10,9 +10,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="author" content="Xin Wang…" />
+<meta name="author" content="Dan Shen, Letian Shi, Xin Wang, Qianyi Yang, Yue You" />
 
-<meta name="date" content="2016-11-27" />
+<meta name="date" content="2016-12-01" />
 
 <title>Multiple factor analysis package</title>
 
@@ -69,63 +69,64 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <h1 class="title toc-ignore">Multiple factor analysis package</h1>
-<h4 class="author"><em>Xin Wang…</em></h4>
-<h4 class="date"><em>2016-11-27</em></h4>
+<h4 class="author"><em>Dan Shen, Letian Shi, Xin Wang, Qianyi Yang, Yue You</em></h4>
+<h4 class="date"><em>2016-12-01</em></h4>
 
 
 
 <div id="package-info" class="section level2">
 <h2>Package Info</h2>
-<p>The <code>html_vignette</code> template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:</p>
-<pre><code>output: 
-  rmarkdown::html_vignette:
-    css: mystyles.css</code></pre>
+<p>This package provides functions to analyze and visualize multiblock data sets using multiple factor analysis.</p>
 </div>
 <div id="how-to-use-the-package" class="section level2">
 <h2>How to use the package</h2>
-<p>here is the example in the paper</p>
+<p>Here is an example to illustrate how to use this package</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;../R/mfa.r&quot;</span>)
 <span class="kw">source</span>(<span class="st">'../R/plot.r'</span>)
+<span class="kw">source</span>(<span class="st">'../R/method.r'</span>)
 <span class="kw">source</span>(<span class="st">'../R/print.r'</span>)
-<span class="kw">source</span>(<span class="st">'../R/bootstrap.r'</span>)
-
-<span class="co">#Read the data from file(You may change the path)</span>
-data_raw&lt;-<span class="kw">read.csv</span>(<span class="st">&quot;../data/wines.csv&quot;</span>)
-
+<span class="kw">source</span>(<span class="st">'../R/bootstrap.r'</span>)</code></pre></div>
+<div id="read-the-data-from-fileyou-may-change-the-path" class="section level3">
+<h3>Read the data from file(You may change the path)</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_raw&lt;-<span class="kw">read.csv</span>(<span class="st">&quot;../data/wines.csv&quot;</span>)
 <span class="co">#Pick the useful part</span>
 data&lt;-data_raw[,<span class="dv">2</span>:<span class="dv">54</span>]
-
 <span class="co">#Make a list store the block division</span>
 pick1&lt;-<span class="kw">list</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">6</span>),<span class="kw">seq</span>(<span class="dv">7</span>,<span class="dv">12</span>),<span class="kw">seq</span>(<span class="dv">13</span>,<span class="dv">18</span>),<span class="kw">seq</span>(<span class="dv">19</span>,<span class="dv">23</span>),<span class="kw">seq</span>(<span class="dv">24</span>,<span class="dv">29</span>),
             <span class="kw">seq</span>(<span class="dv">30</span>,<span class="dv">34</span>),<span class="kw">seq</span>(<span class="dv">35</span>,<span class="dv">38</span>),<span class="kw">seq</span>(<span class="dv">39</span>,<span class="dv">44</span>),<span class="kw">seq</span>(<span class="dv">45</span>,<span class="dv">49</span>),<span class="kw">seq</span>(<span class="dv">50</span>,<span class="dv">53</span>))
-
 col_name&lt;-<span class="kw">names</span>(data)
 pick2&lt;-<span class="kw">list</span>(col_name[<span class="dv">1</span>:<span class="dv">6</span>],col_name[<span class="dv">7</span>:<span class="dv">12</span>],col_name[<span class="dv">13</span>:<span class="dv">18</span>],col_name[<span class="dv">19</span>:<span class="dv">23</span>],col_name[<span class="dv">24</span>:<span class="dv">29</span>],
-            col_name[<span class="dv">30</span>:<span class="dv">34</span>],col_name[<span class="dv">35</span>:<span class="dv">38</span>],col_name[<span class="dv">39</span>:<span class="dv">44</span>],col_name[<span class="dv">45</span>:<span class="dv">49</span>],col_name[<span class="dv">50</span>:<span class="dv">53</span>])
-<span class="co">#Construct the object </span>
-review&lt;-<span class="kw">mfa</span>(data,pick1,<span class="dt">ncomp=</span><span class="dv">2</span>, <span class="dt">scale=</span><span class="dv">1</span>)
-
-<span class="co"># print method</span>
-<span class="kw">print.mfa</span>(review)</code></pre></div>
+            col_name[<span class="dv">30</span>:<span class="dv">34</span>],col_name[<span class="dv">35</span>:<span class="dv">38</span>],col_name[<span class="dv">39</span>:<span class="dv">44</span>],col_name[<span class="dv">45</span>:<span class="dv">49</span>],col_name[<span class="dv">50</span>:<span class="dv">53</span>])</code></pre></div>
+</div>
+<div id="construct-the-object" class="section level3">
+<h3>Construct the object</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">review&lt;-<span class="kw">mfa</span>(data,pick1)</code></pre></div>
+</div>
+<div id="print-method" class="section level3">
+<h3>print method</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print.mfa</span>(review)</code></pre></div>
 <pre><code>## Table 1. Head of Singular Values and Eigen Values
-##                    V1    V2
-## singular_values 0.878 0.351
-## eigen_values    0.770 0.123
+##                    V1    V2    V3    V4    V5    V6    V7    V8    V9
+## singular_values 0.878 0.351 0.301 0.276 0.244 0.198 0.176 0.158 0.137
+## eigen_values    0.770 0.123 0.091 0.076 0.060 0.039 0.031 0.025 0.019
+##                   V10   V11
+## singular_values 0.116 0.106
+## eigen_values    0.013 0.011
 ## 
 ## Table 2. First Two Dimensions of Common Factor Scores
 ##         [,1]   [,2]
-##  [1,] -0.980 -0.980
-##  [2,] -0.809 -0.809
-##  [3,] -0.761 -0.761
-##  [4,] -1.115 -1.115
-##  [5,]  1.373  1.373
-##  [6,]  1.264  1.264
-##  [7,]  0.808  0.808
-##  [8,]  0.925  0.925
-##  [9,] -0.669 -0.669
-## [10,]  0.073  0.073
-## [11,] -0.476 -0.476
-## [12,]  0.367  0.367
+##  [1,] -0.980  0.163
+##  [2,] -0.809  0.033
+##  [3,] -0.761 -0.454
+##  [4,] -1.115 -0.166
+##  [5,]  1.373 -0.128
+##  [6,]  1.264 -0.108
+##  [7,]  0.808  0.205
+##  [8,]  0.925  0.408
+##  [9,] -0.669  0.369
+## [10,]  0.073 -0.757
+## [11,] -0.476  0.513
+## [12,]  0.367 -0.076
 ## 
 ## Table 3. Partial Factor Scores of Assessor 1 
 ##         [,1]   [,2]
@@ -142,32 +143,38 @@ review&lt;-<span class="kw">mfa</span>(data,pick1,<span class="dt">ncomp=</span>
 ## [11,] -0.643  0.640
 ## [12,]  0.323  0.036</code></pre>
 </div>
-<div id="plot-method" class="section level1">
-<h1>plot method</h1>
-<p>plot.mfa(review, dim_plot=c(1,2), cex=0,8)</p>
+<div id="plot-method" class="section level3">
+<h3>plot method</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#plot.mfa(review, dim_plot=c(1,2), cex=0.8)</span></code></pre></div>
 </div>
-<div id="test-the-each-meathods-and-functions" class="section level1">
-<h1>Test the each meathods and functions</h1>
+<div id="additional-method-to-analyse-the-mfa-object" class="section level3">
+<h3>Additional method to analyse the MFA object</h3>
+<div id="summary_eigen" class="section level4">
+<h4>1.summary_eigen</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test1&lt;-<span class="kw">summary_eigen</span>(review)</code></pre></div>
 </div>
-<div id="summary_eigen" class="section level1">
-<h1>1.summary_eigen</h1>
-<p>test1&lt;-summary_eigen(review)</p>
+<div id="contribution" class="section level4">
+<h4>2.contribution</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#test2&lt;-contribution(review,type=&quot;observation&quot;)</span>
+<span class="co">#test3&lt;-contribution(review,type=&quot;variable&quot;)</span>
+<span class="co">#test4&lt;-contribution(review,type=&quot;table&quot;)</span></code></pre></div>
 </div>
-<div id="contribution" class="section level1">
-<h1>2.contribution</h1>
-<p>test2&lt;-contribution(review,type=“observation”) test3&lt;-contribution(review,type=“variable”) test4&lt;-contribution(review,type=“table”)</p>
+<div id="rv" class="section level4">
+<h4>3.RV</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num_block&lt;-<span class="kw">length</span>(review$weight)
+test5&lt;-<span class="kw">RV</span>(review$scale_x[,<span class="kw">seq</span>(review$divide[<span class="dv">1</span>],review$divide[<span class="dv">2</span>]-<span class="dv">1</span>)],
+          review$scale_x[,<span class="kw">seq</span>(review$divide[num_block<span class="dv">-1</span>],review$divide[num_block]-<span class="dv">1</span>)])</code></pre></div>
 </div>
-<div id="rv" class="section level1">
-<h1>3.RV</h1>
-<p>num_block&lt;-length(review<span class="math inline">\(weight) test5&lt;-RV(review\)</span>scale_x[,seq(review<span class="math inline">\(divide[1],review\)</span>divide[2]-1)], review<span class="math inline">\(scale_x[,seq(review\)</span>divide[num_block-1],review$divide[num_block]-1)])</p>
+<div id="lg" class="section level4">
+<h4>4.LG</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test6&lt;-<span class="kw">LG</span>(review$scale_x[,<span class="kw">seq</span>(review$divide[<span class="dv">1</span>],review$divide[<span class="dv">2</span>]-<span class="dv">1</span>)],
+          review$scale_x[,<span class="kw">seq</span>(review$divide[num_block<span class="dv">-1</span>],review$divide[num_block]-<span class="dv">1</span>)])</code></pre></div>
 </div>
-<div id="lg" class="section level1">
-<h1>4.LG</h1>
-<p>test6&lt;-LG(review<span class="math inline">\(scale_x[,seq(review\)</span>divide[1],review<span class="math inline">\(divide[2]-1)],  review\)</span>scale_x[,seq(review<span class="math inline">\(divide[num_block-1],review\)</span>divide[num_block]-1)])</p>
+<div id="bootstrap" class="section level4">
+<h4>5. Bootstrap</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bootstrap_ratio =<span class="st"> </span><span class="kw">bootstrap.mfa</span>(review, <span class="dv">10</span>)</code></pre></div>
 </div>
-<div id="bootstrap" class="section level1">
-<h1>5. Bootstrap</h1>
-<p>bootstrap_ratio = bootstrap.mfa(review, 10) ```</p>
+</div>
 </div>
 
 

@@ -57,7 +57,7 @@ bootstrap.mfa <- function(X, L = 10){
 #' @param L: number of bootstrap samples are computed
 #' @return figure 7 & 8 in paper
 #' @examples \dontrun{
-#' an example}
+#' plot.boostrap(review, 10)}
 
 plot.boostrap <- function(X, L) {
 #############check input values####################

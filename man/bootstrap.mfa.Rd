@@ -4,7 +4,7 @@
 \alias{bootstrap.mfa}
 \title{bootstrap.mfa}
 \usage{
-bootstrap.mfa(X, L)
+bootstrap.mfa(X, L = 10)
 }
 \arguments{
 \item{X:}{a mfa object}

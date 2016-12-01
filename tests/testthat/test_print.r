@@ -14,16 +14,11 @@ pick2<-list(col_name[1:6],col_name[7:12],col_name[13:18],col_name[19:23],col_nam
 #Construct the object
 review<-mfa(data,pick1)
 
-
 # test
-test_that('functionality', plot.mfa(review, dim_plot = c(1,2), cex = 0.8))
-test_that("plot.r with wrong dimension inputs",{
-  expect_error(plot.mfa(review, dim_plot = c(12,-2), cex = 0.8))
+test_that('functionality', print.mfa(review, n_assessor = 1))
+test_that("plot.r with wrong n_assessor inputs",{
+  expect_error(print.mfa(review, n_assessor = -1))
 })
 test_that("plot.r with wrong dataset x inputs",{
-  expect_error(plot.mfa(1:12, dim_plot = c(1,2), cex = 0.8))
+  expect_error(print.mfa(1:12, n_assessor = -1))
 })
-test_that("plot with wrong cex inputs",{
-  expect_error(plot.mfa(review, dim_plot = c(1,2), cex = -1))
-})
-

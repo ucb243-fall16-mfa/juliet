@@ -27,7 +27,7 @@ fsb = function(PFS){
 bootstrap.mfa <- function(X, L = 10){
 #############check input values####################
   # check input dataset
-  if(class(x) != "mfa") {
+  if(class(X) != "mfa") {
     stop("Wrong class of data!\nClass should be 'mfa'.")
   }
   # check input number of samples L
@@ -62,7 +62,7 @@ bootstrap.mfa <- function(X, L = 10){
 plot.boostrap <- function(X, L) {
 #############check input values####################
   # check input dataset
-  if(class(x) != "mfa") {
+  if(class(X) != "mfa") {
     stop("Wrong class of data!\nClass should be 'mfa'.")
   }
   # check input number of samples L

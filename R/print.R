@@ -14,7 +14,7 @@ print.mfa <- function(x, n_assessor = 1, ...) {
   cat("Table 1. Head of Singular Values and Eigen Values\n")
   print(table1)
   # 2) print table2 of common factor scores
-  table2 = round(cbind(x$common_factor_scores[,1], x$common_factor_scores[,1]),3)
+  table2 = round(cbind(x$common_factor_scores[,1], x$common_factor_scores[,2]),3)
   cat("\nTable 2. First Two Dimensions of Common Factor Scores\n")
   print(table2)
   # 3) print table3 of partial factor scores
@@ -22,7 +22,7 @@ print.mfa <- function(x, n_assessor = 1, ...) {
   partial_factor_scores <- attributes(x$partial_factor_scores)
   partial_factor_scores[[1]] <- NULL
   # get the partial factor scores for Assessor n_assessor
-  table3 = round(cbind(partial_factor_scores[[n_assessor]][,1], 
+  table3 = round(cbind(partial_factor_scores[[n_assessor]][,1],
                        partial_factor_scores[[n_assessor]][,2]),3)
   cat("\nTable 3. Partial Factor Scores of Assessor", n_assessor, "\n")
   print(table3)

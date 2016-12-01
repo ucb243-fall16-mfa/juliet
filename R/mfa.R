@@ -111,7 +111,7 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
     divide=(cumsum(c(c(0),N))+1),
     weight=alpha,
     mass=rep(1/nrow,nrow),
-    dim=ncomps,
+    dim=min(ncomps,length(eigen)),
     scale_x=X
   )
   class(result) <- "mfa"

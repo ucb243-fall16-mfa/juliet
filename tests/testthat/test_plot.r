@@ -26,4 +26,6 @@ test_that("plot.r with wrong dataset x inputs",{
 test_that("plot with wrong cex inputs",{
   expect_error(plot.mfa(review, dim_plot = c(1,2), cex = -1))
 })
-
+test_that("plot.r with wrong mfrow inputs",{
+  expect_error(plot.mfa(review, dim_plot = c(12,-2), cex = 0.8, mfrow_input = c(-1,2)))
+})

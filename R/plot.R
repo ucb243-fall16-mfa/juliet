@@ -1,4 +1,4 @@
-plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
+plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, mfrow_input = c(2,5), ...) {
 ######################check input######################
   # check input dataset
   if(class(x) != "mfa") {
@@ -12,7 +12,12 @@ plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
   }
   # check size of points
   if (cex <= 0) stop("Wrong cex values!\nCex should be positive.")
-    
+  # check mfrow: how many graphs in a row/col
+  for (i in 1:2) {
+    if (mfrow_input[i] < 0 || mfrow_input[i] > 5 || mfrow_input[i] %% 1 != 0) {
+      stop("Wrong mfrow input values!\nmfrows should be integers between 1 to 5.")
+    }
+  }
 ##################set labels for factor plots###############################
   factor_text <- NULL
   size_subsample <- dim(x$common_factor_scores)[1] / 3
@@ -62,35 +67,41 @@ plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
 
 ################## PLOT #####################
 ###############PLOT common factor scores ####################
+  margin1 <- par(mar = rep(2,4))
   plot(x$common_factor_scores[,1], x$common_factor_scores[,2], main = "Common Factor Scores",
        xlab = "1", ylab = "2", bty = "l", type = "n", las = 1,
        xlim = c(min(x$common_factor_scores[,1])-0.5, max(x$common_factor_scores[,1])+0.5),
        ylim = c(min(x$common_factor_scores[,2]), max(x$common_factor_scores[,2])))
   text(x$common_factor_scores[,1], x$common_factor_scores[,2], labels = factor_text, cex = cex, col = "blue")
   abline(h=0, v=0)
-  
+  par(margin1)
+
 ##############PLOT partial factor scores ONLY #####################
   # plot 10 graphs in one doc.
-  multi_graph <- par(mfrow=c(2,5))
+  multi_graph <- par(mfrow = mfrow_input)
+  margins <- par(mar = rep(1, 4))
   # plot partial factor scores
-  for (i in 1: length(partial_factor_scores)) {    # index = order of assessor + 1 
+  for (i in 1: length(partial_factor_scores)) {    # index = order of assessor + 1
     plot(partial_factor_scores[[i]][,dim_plot[1]], partial_factor_scores[[i]][,dim_plot[2]], main = "Partial Factor Scores",
          xlab = paste0("dim", dim_plot[1]), ylab = paste0("dim", dim_plot[2]), bty = "l", type = "n", las = 1,
          xlim = c(min(partial_factor_scores[[i]][,dim_plot[1]])-0.5, max(partial_factor_scores[[i]][,dim_plot[1]])+0.5),
          ylim = c(min(partial_factor_scores[[i]][,dim_plot[2]]), max(partial_factor_scores[[i]][,dim_plot[2]])))
    # plot partial factor scores
-    text(partial_factor_scores[[i]][,dim_plot[1]], partial_factor_scores[[i]][,dim_plot[2]], cex = cex, 
+    text(partial_factor_scores[[i]][,dim_plot[1]], partial_factor_scores[[i]][,dim_plot[2]], cex = cex,
         labels = factor_text, col = "blue")
     mtext(side=1,text=paste0("Assessor", i), cex = cex)
     abline(h = 0, v = 0)
   }
   par(multi_graph)
+  par(margins)
+
 ##############################################
 ##############PLOT loadings ONLY#####################
   # plot 10 graphs in one doc.
-  multi_graph <- par(mfrow=c(2,5))
+  multi_graph <- par(mfrow = mfrow_input)
+  margins <- par(mar = rep(1, 4))
   # plot partial factor scores
-  for (i in 1: length(partial_factor_scores)) {    # index = order of assessor + 1 
+  for (i in 1: length(partial_factor_scores)) {    # index = order of assessor + 1
     plot(partial_factor_scores[[i]][,dim_plot[1]], partial_factor_scores[[i]][,dim_plot[2]], main = "Loadings",
          xlab = paste0("dim", dim_plot[1]), ylab = paste0("dim", dim_plot[2]), bty = "l", type = "n", las = 1,
          xlim = c(min(partial_factor_scores[[i]][,dim_plot[1]])-0.5, max(partial_factor_scores[[i]][,dim_plot[1]])+0.5),
@@ -101,17 +112,20 @@ plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
     abline(h = 0, v = 0)
   }
   par(multi_graph)
+  par(margins)
+
 ##############PLOT partial factor scores && Loading TOGETHER#####################
   # plot 10 graphs in one doc.
-  multi_graph <- par(mfrow=c(2,5))
+  multi_graph <- par(mfrow = mfrow_input)
+  margins <- par(mar = rep(1, 4))
   # plot partial factor scores
-  for (i in 1: length(partial_factor_scores)) {    # index = order of assessor + 1 
+  for (i in 1: length(partial_factor_scores)) {    # index = order of assessor + 1
     plot(partial_factor_scores[[i]][,dim_plot[1]], partial_factor_scores[[i]][,dim_plot[2]], main = "PFS & Loadings",
          xlab = paste0("dim", dim_plot[1]), ylab = paste0("dim", dim_plot[2]), bty = "l", type = "n", las = 1,
          xlim = c(min(partial_factor_scores[[i]][,dim_plot[1]])-0.5, max(partial_factor_scores[[i]][,dim_plot[1]])+0.5),
          ylim = c(min(partial_factor_scores[[i]][,dim_plot[2]]), max(partial_factor_scores[[i]][,dim_plot[2]])))
     # plot partial factor scores
-    text(partial_factor_scores[[i]][,dim_plot[1]], partial_factor_scores[[i]][,dim_plot[2]], cex = cex, 
+    text(partial_factor_scores[[i]][,dim_plot[1]], partial_factor_scores[[i]][,dim_plot[2]], cex = cex,
          labels = factor_text, col = "blue")
     # plot loadings
     text(loadings_list[[i]][,dim_plot[1]], loadings_list[[i]][,dim_plot[2]], labels = loadings_text[[i]], col = "orange")
@@ -119,6 +133,8 @@ plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
     abline(h = 0, v = 0)
   }
   par(multi_graph)
+  par(margins)
+
 }
 
 

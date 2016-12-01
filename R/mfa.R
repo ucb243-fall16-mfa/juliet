@@ -105,9 +105,9 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
   # 4) matrix of loadings (factor loadings) = Q
   result<-list(
     eigen=eigen[seq(min(ncomps,length(eigen)))],
-    common_factor_scores=Factor_scores[,seq(ncomps)],
+    common_factor_scores=Factor_scores[,seq(min(ncomps,length(eigen)))],
     partial_factor_scores=P_F[],
-    loadings=Q[,seq(ncomps-1)],
+    loadings=Q[,seq(min(ncomps,length(eigen)))],
     divide=(cumsum(c(c(0),N))+1),
     weight=alpha,
     mass=rep(1/nrow,nrow),

@@ -50,7 +50,7 @@ contribution<-function(x,type){
     round(percent,3)
   }
   else{
-    print("The type is Error")
+    stop("\nThe type is Error")
   }
 }
 #To find the sum of the diagonal entried of the matrix

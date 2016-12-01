@@ -1,6 +1,10 @@
 #' @title mfa
 #' @description mfa is the main function of MFA package
-#' @param data: The working example consists of a (fictitious) wine tasting experiment.
+#' @param data: data set(matrix or data frame)
+#' @param sets: list of vectors indicating the sets of the varaiables (column of data)
+#' @param ncomps: integer indicating the dimension (the number of eigenvalue needed to consider)
+#' @param center: center is simlar to the arugement in the 'scale' function
+#' @param scale: either a logical value or a numeric vector of length equal to the number of active variables in the analysis
 #' @export
 #' @return The function will return an object of class "mfa" with eigenvalues, common factor scores matrix, partial factor scores matrix and factor loadings.
 #' @examples \dontrun{

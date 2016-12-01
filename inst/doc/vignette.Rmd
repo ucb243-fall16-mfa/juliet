@@ -44,7 +44,7 @@ print.mfa(review)
 ```
 ### plot method
 ```{r}
-#plot.mfa(review, dim_plot=c(1,2), cex=0.8)
+plot.mfa(review, dim_plot=c(1,2), cex=0.8, mfrow=c(5,2))
 ```
 ### Additional method to analyse the MFA object
 ####1.summary_eigen
@@ -53,9 +53,9 @@ test1<-summary_eigen(review)
 ```
 ####2.contribution
 ```{r}
-#test2<-contribution(review,type="observation")
-#test3<-contribution(review,type="variable")
-#test4<-contribution(review,type="table")
+test2<-contribution(review,type="observation")
+test3<-contribution(review,type="variable")
+test4<-contribution(review,type="table")
 ```
 ####3.RV
 ```{r}

@@ -23,15 +23,15 @@ review<-mfa(data,pick1)
 print.mfa(review)
 
 ## ------------------------------------------------------------------------
-#plot.mfa(review, dim_plot=c(1,2), cex=0.8)
+plot.mfa(review, dim_plot=c(1,2), cex=0.8, mfrow=c(5,2))
 
 ## ------------------------------------------------------------------------
 test1<-summary_eigen(review)
 
 ## ------------------------------------------------------------------------
-#test2<-contribution(review,type="observation")
-#test3<-contribution(review,type="variable")
-#test4<-contribution(review,type="table")
+test2<-contribution(review,type="observation")
+test3<-contribution(review,type="variable")
+test4<-contribution(review,type="table")
 
 ## ------------------------------------------------------------------------
 num_block<-length(review$weight)

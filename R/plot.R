@@ -91,7 +91,7 @@ plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
   multi_graph <- par(mfrow=c(2,5))
   # plot partial factor scores
   for (i in 1: length(partial_factor_scores)) {    # index = order of assessor + 1 
-    plot(partial_factor_scores[[i]][,dim_plot[1]], partial_factor_scores[[i]][,dim_plot[2]], main = "Partial Factor Scores",
+    plot(partial_factor_scores[[i]][,dim_plot[1]], partial_factor_scores[[i]][,dim_plot[2]], main = "Loadings",
          xlab = paste0("dim", dim_plot[1]), ylab = paste0("dim", dim_plot[2]), bty = "l", type = "n", las = 1,
          xlim = c(min(partial_factor_scores[[i]][,dim_plot[1]])-0.5, max(partial_factor_scores[[i]][,dim_plot[1]])+0.5),
          ylim = c(min(partial_factor_scores[[i]][,dim_plot[2]]), max(partial_factor_scores[[i]][,dim_plot[2]])))
@@ -106,7 +106,7 @@ plot.mfa <- function(x, dim_plot = c(1,2), cex = 0.8, ...) {
   multi_graph <- par(mfrow=c(2,5))
   # plot partial factor scores
   for (i in 1: length(partial_factor_scores)) {    # index = order of assessor + 1 
-    plot(partial_factor_scores[[i]][,dim_plot[1]], partial_factor_scores[[i]][,dim_plot[2]], main = "Partial Factor Scores",
+    plot(partial_factor_scores[[i]][,dim_plot[1]], partial_factor_scores[[i]][,dim_plot[2]], main = "PFS & Loadings",
          xlab = paste0("dim", dim_plot[1]), ylab = paste0("dim", dim_plot[2]), bty = "l", type = "n", las = 1,
          xlim = c(min(partial_factor_scores[[i]][,dim_plot[1]])-0.5, max(partial_factor_scores[[i]][,dim_plot[1]])+0.5),
          ylim = c(min(partial_factor_scores[[i]][,dim_plot[2]]), max(partial_factor_scores[[i]][,dim_plot[2]])))

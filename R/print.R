@@ -1,4 +1,8 @@
 print.mfa <- function(x, n_assessor = 1, ...) {
+  # check input dataset class
+  if(class(x) != "mfa") {
+    stop("Wrong class of data!\nClass should be 'mfa'.")
+  }
   # check input n_accessor
   if (n_assessor %% 1 != 0 || n_assessor < 1 || n_assessor > 12) {
     stop("n_assessor should be an integer between 1 to 12")

@@ -2,6 +2,7 @@
 #' @description summary_eigen is the function of MFA package.
 #'              The function aims to analyze the property of eigenvalues.
 #' @param x  a mfa object
+#' @export
 #' @return The function will reutrn a data frame including 5 componenets.
 #' @return 1.singular value:the square root of eigenvalue.
 #' @return 2.eigenvalue: one of the properties contained in the mfa project.

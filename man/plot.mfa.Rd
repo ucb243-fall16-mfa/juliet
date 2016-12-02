@@ -2,30 +2,31 @@
 % Please edit documentation in R/plot.R
 \name{plot.mfa}
 \alias{plot.mfa}
-\title{plot}
+\title{plot.mfa}
 \usage{
 \method{plot}{mfa}(x, dim_plot = c(1, 2), cex = 0.8, mfrow_input = c(2,
   5), ...)
 }
 \arguments{
-\item{data:}{data set(matrix or data frame)}
+\item{x}{data set(class should be mfa)}
 
-\item{sets:}{list of vectors indicating the sets of the varaiables (column of data)}
+\item{dim_plot}{vector of 2 indicating the 2 dimensions to plot partial factor scores with
+(integer between 1 to 11).}
 
-\item{ncomps:}{integer indicating the dimension (the number of eigenvalue needed to consider)}
+\item{cex}{positive number indicating the size of texts in graphs.}
 
-\item{center:}{center is simlar to the arugement in the 'scale' function}
+\item{mfrow_input}{vector of 2 indicating how many graphs in each row and col.}
 
-\item{scale:}{either a logical value or a numeric vector of length equal to the number of active variables in the analysis}
+\item{...}{other arguments}
 }
 \value{
-The function will return an object of class "mfa" with eigenvalues, common factor scores matrix, partial factor scores matrix and factor loadings.
+4 graphs
+}
+\description{
+plot 4 graphs containing common factor scores, partial factor scores, and loadings
 }
 \examples{
 \dontrun{
-data_raw<-read.csv("data/wines.csv")
-data<-data_raw[,2:54]
-pick1<-list(seq(1,6),seq(7,12),seq(13,18),seq(19,23),seq(24,29),seq(30,34),seq(35,38),seq(39,44),seq(45,49),seq(50,53))
-review<-mfa(data,pick1)}
+plot.mfa(review, dim_plot = c(1,2), cex = 0.8, mfrow_input = c(2,5))}
 }
 

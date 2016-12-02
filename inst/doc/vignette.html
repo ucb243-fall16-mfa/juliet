@@ -12,7 +12,7 @@
 
 <meta name="author" content="Dan Shen, Letian Shi, Xin Wang, Qianyi Yang, Yue You" />
 
-<meta name="date" content="2016-12-01" />
+<meta name="date" content="2016-12-02" />
 
 <title>Multiple factor analysis package</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Multiple factor analysis package</h1>
 <h4 class="author"><em>Dan Shen, Letian Shi, Xin Wang, Qianyi Yang, Yue You</em></h4>
-<h4 class="date"><em>2016-12-01</em></h4>
+<h4 class="date"><em>2016-12-02</em></h4>
 
 
 
@@ -105,7 +105,9 @@ pick2&lt;-<span class="kw">list</span>(col_name[<span class="dv">1</span>:<span 
 <div id="print-method" class="section level3">
 <h3>print method</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print.mfa</span>(review)</code></pre></div>
-<pre><code>## Table 1. Head of Singular Values and Eigen Values
+<pre><code>## 
+## Table 1. Singular Values and Eigen Values
+## 
 ##                    V1    V2    V3    V4    V5    V6    V7    V8    V9
 ## singular_values 0.878 0.351 0.301 0.276 0.244 0.198 0.176 0.158 0.137
 ## eigen_values    0.770 0.123 0.091 0.076 0.060 0.039 0.031 0.025 0.019
@@ -114,6 +116,7 @@ pick2&lt;-<span class="kw">list</span>(col_name[<span class="dv">1</span>:<span 
 ## eigen_values    0.013 0.011
 ## 
 ## Table 2. First Two Dimensions of Common Factor Scores
+## 
 ##         [,1]   [,2]
 ##  [1,] -0.980  0.163
 ##  [2,] -0.809  0.033
@@ -129,6 +132,7 @@ pick2&lt;-<span class="kw">list</span>(col_name[<span class="dv">1</span>:<span 
 ## [12,]  0.367 -0.076
 ## 
 ## Table 3. Partial Factor Scores of Assessor 1 
+## 
 ##         [,1]   [,2]
 ##  [1,] -1.037  0.155
 ##  [2,] -1.179  0.596
@@ -141,7 +145,21 @@ pick2&lt;-<span class="kw">list</span>(col_name[<span class="dv">1</span>:<span 
 ##  [9,] -0.922  0.486
 ## [10,]  0.189 -0.936
 ## [11,] -0.643  0.640
-## [12,]  0.323  0.036</code></pre>
+## [12,]  0.323  0.036
+## 
+## Table 4. First 10 items in First Two Dimensions of Loadings
+## 
+##         [,1]   [,2]
+##  [1,] -0.294  0.318
+##  [2,] -0.267 -0.248
+##  [3,] -0.260  0.396
+##  [4,]  0.241 -0.184
+##  [5,]  0.286  0.161
+##  [6,] -0.233  0.129
+##  [7,] -0.297  0.183
+##  [8,] -0.296 -0.178
+##  [9,] -0.267  0.200
+## [10,]  0.256 -0.240</code></pre>
 </div>
 <div id="plot-method" class="section level3">
 <h3>plot method</h3>

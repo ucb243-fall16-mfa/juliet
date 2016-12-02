@@ -1,10 +1,11 @@
 #' @title plot.mfa
 #' @description plot 4 graphs containing common factor scores, partial factor scores, and loadings
-#' @param x: data set(class should be mfa)
-#' @param dim_plot: vector of 2 indicating the 2 dimensions to plot partial factor scores with
+#' @param x data set(class should be mfa)
+#' @param dim_plot vector of 2 indicating the 2 dimensions to plot partial factor scores with
 #'  (integer between 1 to 11).
-#' @param cex: positive number indicating the size of texts in graphs.
-#' @param mfrow_input: vector of 2 indicating how many graphs in each row and col.
+#' @param cex positive number indicating the size of texts in graphs.
+#' @param mfrow_input vector of 2 indicating how many graphs in each row and col.
+#' @param ... other arguments
 #' @export
 #' @return 4 graphs
 #' @examples \dontrun{

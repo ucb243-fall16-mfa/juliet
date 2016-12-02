@@ -15,8 +15,8 @@ fsb = function(PFS){
 
 #' @title bootstrap.mfa
 #' @description main function of bootstrap
-#' @param X: a mfa object
-#' @param L: number of bootstrap samples are computed
+#' @param X a mfa object
+#' @param L number of bootstrap samples are computed
 #' @export bootstrap.mfa
 #' @return bootstrap estimates and bootstrap ratio
 #' @examples \dontrun{bootstrap.mfa(mfa.obj, 1000)}
@@ -51,8 +51,8 @@ bootstrap.mfa <- function(X, L = 10){
 
 #' @title plot.boostrap
 #' @description plot figure 7 & 8 in paper, use AFTER running bootsrap.mfa()
-#' @param X: a mfa object
-#' @param L: number of bootstrap samples are computed
+#' @param X a mfa object
+#' @param L number of bootstrap samples are computed
 #' @return figure 7 & 8 in paper
 #' @examples \dontrun{
 #' plot.boostrap(review, 10)}

@@ -7,9 +7,9 @@
 \method{plot}{boostrap}(X, L)
 }
 \arguments{
-\item{X:}{a mfa object}
+\item{X}{a mfa object}
 
-\item{L:}{number of bootstrap samples are computed}
+\item{L}{number of bootstrap samples are computed}
 }
 \value{
 figure 7 & 8 in paper
@@ -19,6 +19,6 @@ plot figure 7 & 8 in paper, use AFTER running bootsrap.mfa()
 }
 \examples{
 \dontrun{
-an example}
+plot.boostrap(review, 10)}
 }
 

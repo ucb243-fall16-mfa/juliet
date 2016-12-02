@@ -1,7 +1,8 @@
 #' @title print.mfa
 #' @description print 4 tables containing eigen values, common factor scores, partial facotr scores, and loadings.
-#' @param x: data set(class should be mfa)
-#' @param n_assessor: integer between 1 to 10 indicating the number of the chosen assessor.
+#' @param x data set(class should be mfa)
+#' @param n_assessor integer between 1 to 10 indicating the number of the chosen assessor.
+#' @param ... other arguments
 #' @export
 #' @return 4 tables
 #' @examples \dontrun{

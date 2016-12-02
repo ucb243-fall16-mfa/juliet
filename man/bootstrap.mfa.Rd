@@ -7,9 +7,9 @@
 bootstrap.mfa(X, L = 10)
 }
 \arguments{
-\item{X:}{a mfa object}
+\item{X}{a mfa object}
 
-\item{L:}{number of bootstrap samples are computed}
+\item{L}{number of bootstrap samples are computed}
 }
 \value{
 bootstrap estimates and bootstrap ratio

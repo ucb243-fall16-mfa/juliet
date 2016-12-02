@@ -145,7 +145,7 @@ Input:
 
 Output is a data frame including:
 
-- contributionone of one kind of elements to a dimension seperately
+- contribution of one kind of elements to a dimension seperately
 
 `RV(table1,table2)`function:returns a number which is a coefficient to study the between-table structure.
 

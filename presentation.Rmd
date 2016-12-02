@@ -168,7 +168,7 @@ Output is a data frame including:
 
 Input:
 
-- table1: a matrixthe
+- table1: a matrix
 - table2: a matrix which has the same number of rows as table1
 
 `RV_table(dataset,sets)`function: returns a data frame and the components are the coefficient about the tables.
@@ -185,7 +185,7 @@ Input:
 
 Input:
 
-- table1: a matrixthe
+- table1: a matrix
 - table2: a matrix which has the same number of rows as table1
 
 # Bootstrap 

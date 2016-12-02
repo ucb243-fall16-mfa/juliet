@@ -42,8 +42,9 @@ contribution<-function(x,type="table"){
     stop("\n'object' need to be mfa")
   }
   if(type=="observation"){
-    summation=colSums(diag(x$mass)[1:x$dim,] %*% x$common_factor_scores^2)
-    percent=apply(x$common_factor_scores,1,function(y) y^2*(x$mass)[1:x$dim]/summation)[,1:x$dim]
+    summation=colSums(diag(x$mass) %*% x$common_factor_scores^2)
+    percent=apply(diag(x$mass) %*% x$common_factor_scores^2,1,function(y) y/summation)
+    percent=t(percent)
     colnames(percent)<-paste0(rep("dim",length(percent[1,])),seq(length(percent[1,])))
     rownames(percent)<-paste0(rep("ob",length(percent[,1])),seq(length(percent[,1])))
     round(percent,3)

@@ -134,14 +134,14 @@ Output is a data frame including:
 - eigenvalue: one of the properties contained in the mfa project
 - cumulative1: the cumlulative of the eigenvalues in decreasing series
 - Inertia: the proportion of each eigenvalue to the sum of all eigenvalues
-- cumulative2:the cumlulative of the intertia in decreasing series
+- cumulative2: the cumlulative of the intertia in decreasing series
 
 `contribution(x,type)`function:returns a data frame including the proportion of contributions of important elements.
 
 Input:
 
 - x: a MFA object
-- type:a character-"observation","variaable" or "table" representing the kind of elements
+- type: a character-"observation","variaable" or "table" representing the kind of elements
 
 Output is a data frame including:
 

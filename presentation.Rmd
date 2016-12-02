@@ -13,7 +13,6 @@ output:
 
 ```{r, setup, include=FALSE}
 library(knitr)
-# smaller font size for chunks
 knitr::opts_chunk$set(size = 'footnotesize')
 options(width=78)
 ```
@@ -29,21 +28,68 @@ options(width=78)
   
   Yue You: Generic methods and plotting graphs in bootstrap function
 
-# What is MFA?
-Multiple factor analysis is an extension of principal component analysis (PCA) and aims to handle data set that measures sets of variables collected on the same observations.
+# MFA package introduction
+This project is implemented in the form of an R package which provides R functions, user manuel, tests, as well as vignettes. This package is set up on github for collaboration and will be available for public use.
 
-- step 1: PCA of Each Data Table
+Function:
 
-  Each table is analyzed via a standard PCA. The weight of a table is obtained from the first singular value of its PCA. 
+  * `mfa()`
+  * `print() & plot()`
+  * `LG()`
+  * `bootstrap()`
+  * And a set of related methods and functions: 
+    - summaries of eigenvalues
+    - contributions
+    - $R_{V}$ coefficient
   
-- step 2: GSVD of X
+ 
 
-  All the normalized data tables are aggregated into a grand data table X that is analyzed via GSVD. This analysis will give a set of factor scores for the observations and loadings for the variables.
+# What is MFA? - part 1
+Multiple factor analysis aims to handle data set that measures sets of variables collected on the same observations. For example, the sets of variables could be the evaluation of a set of wines by a group of assessors. And each assessor will use four or more variables considered as standard for the evaluation.
+
+- Step 0: Normalize Each Data Table (Preparing Data)
   
-# Main function: mfa-part 1
-We provide a main function mfa() in our package:
+  For example, the data consists of K tables (one table for one assessor).
+  
+  First, each table is centered and normalized that in each column the mean is equal to 0 and the sum of the square values of all the elements is equal to 1. 
+
+# What is MFA? - part 2
+
+- Step 1: PCA of Each Data Table
+
+  Each table is analyzed via a standard PCA. That is, each table is expressed via its SVD as:
+  
+  $X_{[k]}=U_{[k]}\Gamma_{[k]} V_{[k]}^{T}$ with $U_{[k]}^{T}U_{[k]}=V_{[k]}^{T}V_{[k]}=I$
+  
+  The weight of a table is obtained from the first singular value of its PCA. The weight, $\alpha_{k}$, is equal to the inverse of the first squared singular value:
+  
+  $$\alpha_{k}=\frac{1}{\gamma_{1,k}^2}$$
+  Then a diagonal matrix A is obtained as:
+  
+  $$A=diag{[\alpha_{1}1_{[1]}^{T},...\alpha_{k}1_{[k]}^{T},...,\alpha_{K}1_{[K]}^{T}]}$$
+ 
+# What is MFA? - part 3
+
+- Step 2: GSVD of X
+
+  Generate matrix M (masses for the observations);
+  
+  All the normalized data tables are aggregated into a grand data table X that is to be analyzed via GSVD. The GSVD is expressed as:
+  
+  $X=P\Delta Q^{T}$ with $P^{T}MP=Q^{T}AQ=I$.
+  
+  This analysis will provide factor scores to describe the observations and factor loadings to describe the variables. 
+  
+  $X=FQ^{T}$ with $F=P\Delta$
+  
+  where F stores the factor scores and Q stores the loadings. And Q can be expressed as:
+  
+  $$Q=[Q_{[1]}^{T}...Q_{[k]}^{T}...Q_{[K]}^{T}]^{T}$$
+  
+# Main function: mfa - part 1
+We provide a main function `mfa()` in our package:
     
-  _mfa(data, sets, ncomps=NULL, center=TRUE, scale=TRUE)_ where the arguments are:
+  `mfa(data, sets, ncomps=NULL, center=TRUE, scale=TRUE)` where the arguments are:
   
 - data: data set (matrix or data frame)
 - sets: list of character or numeric vectors indicating the sets of variables 
@@ -51,24 +97,24 @@ We provide a main function mfa() in our package:
 - center: either a logical value or a numeric vector determining how column centering is perfromed
 - scale: either a logical value or a numeric vector determining how the scaling of active variables is performed (after centering)
 
-# Main function: mfa-part 2
-mfa function should return on object of class *"mfa"* with the following elements:
+# Main function: mfa - part 2
+`mfa()` function should return on object of class *"mfa"* with the following elements:
 
 - eigen: vector containing the eigenvalues 
 - common_factor_scores: matrix of common factor scores
 - partial_factor_scores: matrix of partial factor scores
 - loadings: matrix of loadings
     
-we also provide other information such as alpha, mass=rep(1/nrow,nrow), dim=ncomps and the complete scaled matrix for the user.
+We also provide other information such as alpha, `mass=rep(1/nrow,nrow)`,     `dim=min(ncomps,length(eigen))` and the complete scaled matrix for the user.
 
-# Generic Methods   
-print() method: displays 3 tables of basic information:
+# Generic Methods - print and plot
+`print()` method: displays 3 tables of basic information:
 
 + Table 1: Singular Values and Eigen Values;
 + Table 2. First Two Dimensions of Common Factor Scores;
 + Table 3. Partial Factor Scores of Any Assessor.
 
-plot() method: displays 4 graphs with users' choice of any two dimenstions:
+`plot()` method: displays 4 graphs with users' choice of any two dimenstions:
 
 + Graph 1: Common Factor Scores;
 + Graph 2: Partial Factor Scores;
@@ -76,8 +122,7 @@ plot() method: displays 4 graphs with users' choice of any two dimenstions:
 + Graph 4: Partial Factor Scores & rescaled Loadings together.
 
 # Bootstrap
-Bootstrap.mfa(X, L) method: computes the bootstrapped eatimate of the factor scores as well as the bootstrap ratio
-The input parameters are:
+`Bootstrap.mfa(X, L)` method: computes the bootstrapped eatimate of the factor scores as well as the bootstrap ratio. The input parameters are:
 
 - X: a MFA object
 - L: the bootstrap sample size
@@ -92,9 +137,7 @@ Graphs:
 - Graph 1: Bootstrap ratio plot for Components 1 and 2.
 - Graph 2: Bootstrap confidence ellipses plotted on Components 1 and 2.
 
-# MFA package introduction
-This project is implemented in the form of an R package which provides R functions, user manuel, tests, as well as vignettes. This package is set up on github for collaboration and will be available for public use.
-
+ 
 # Shiny App
 We develop a shiny app that provides an interactive visualizeation for the results from MFA. We provide
 the user with six types of plots, and the user can select which plot to look at.

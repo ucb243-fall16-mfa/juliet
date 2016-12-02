@@ -27,22 +27,60 @@ Dan Shen, Letian Shi, Qianyi Yang, Xin Wang, Yue You
 <p>Xin Wang: R packaging and bootstrap function</p>
 <p>Yue You: Generic methods and plotting graphs in bootstrap function</p>
 </div>
-<div id="what-is-mfa" class="slide section level1">
-<h1>What is MFA?</h1>
-<p>Multiple factor analysis is an extension of principal component analysis (PCA) and aims to handle data set that measures sets of variables collected on the same observations.</p>
+<div id="mfa-package-introduction" class="slide section level1">
+<h1>MFA package introduction</h1>
+<p>This project is implemented in the form of an R package which provides R functions, user manuel, tests, as well as vignettes. This package is set up on github for collaboration and will be available for public use.</p>
+<p>Function:</p>
 <ul>
-<li>step 1: PCA of Each Data Table</li>
-</ul>
-<p>Each table is analyzed via a standard PCA. The weight of a table is obtained from the first singular value of its PCA.</p>
+<li><code>mfa()</code></li>
+<li><code>print() &amp; plot()</code></li>
+<li><code>LG()</code></li>
+<li><code>bootstrap()</code></li>
+<li>And a set of related methods and functions:
 <ul>
-<li>step 2: GSVD of X</li>
+<li>summaries of eigenvalues</li>
+<li>contributions</li>
+<li><span class="math inline">\(R_{V}\)</span> coefficient</li>
+</ul></li>
 </ul>
-<p>All the normalized data tables are aggregated into a grand data table X that is analyzed via GSVD. This analysis will give a set of factor scores for the observations and loadings for the variables.</p>
 </div>
-<div id="main-function-mfa-part-1" class="slide section level1">
-<h1>Main function: mfa-part 1</h1>
-<p>We provide a main function mfa() in our package:</p>
-<p><em>mfa(data, sets, ncomps=NULL, center=TRUE, scale=TRUE)</em> where the arguments are:</p>
+<div id="what-is-mfa---part-1" class="slide section level1">
+<h1>What is MFA? - part 1</h1>
+<p>Multiple factor analysis aims to handle data set that measures sets of variables collected on the same observations. For example, the sets of variables could be the evaluation of a set of wines by a group of assessors. And each assessor will use four or more variables considered as standard for the evaluation.</p>
+<ul>
+<li>Step 0: Normalize Each Data Table (Preparing Data)</li>
+</ul>
+<p>For example, the data consists of K tables (one table for one assessor).</p>
+<p>First, each table is centered and normalized that in each column the mean is equal to 0 and the sum of the square values of all the elements is equal to 1.</p>
+</div>
+<div id="what-is-mfa---part-2" class="slide section level1">
+<h1>What is MFA? - part 2</h1>
+<ul>
+<li>Step 1: PCA of Each Data Table</li>
+</ul>
+<p>Each table is analyzed via a standard PCA. That is, each table is expressed via its SVD as:</p>
+<p><span class="math inline">\(X_{[k]}=U_{[k]}\Gamma_{[k]} V_{[k]}^{T}\)</span> with <span class="math inline">\(U_{[k]}^{T}U_{[k]}=V_{[k]}^{T}V_{[k]}=I\)</span></p>
+<p>The weight of a table is obtained from the first singular value of its PCA. The weight, <span class="math inline">\(\alpha_{k}\)</span>, is equal to the inverse of the first squared singular value:</p>
+<p><span class="math display">\[\alpha_{k}=\frac{1}{\gamma_{1,k}^2}\]</span> Then a diagonal matrix A is obtained as:</p>
+<p><span class="math display">\[A=diag{[\alpha_{1}1_{[1]}^{T},...\alpha_{k}1_{[k]}^{T},...,\alpha_{K}1_{[K]}^{T}]}\]</span></p>
+</div>
+<div id="what-is-mfa---part-3" class="slide section level1">
+<h1>What is MFA? - part 3</h1>
+<ul>
+<li>Step 2: GSVD of X</li>
+</ul>
+<p>Generate matrix M (masses for the observations);</p>
+<p>All the normalized data tables are aggregated into a grand data table X that is to be analyzed via GSVD. The GSVD is expressed as:</p>
+<p><span class="math inline">\(X=P\Delta Q^{T}\)</span> with <span class="math inline">\(P^{T}MP=Q^{T}AQ=I\)</span>.</p>
+<p>This analysis will provide factor scores to describe the observations and factor loadings to describe the variables.</p>
+<p><span class="math inline">\(X=FQ^{T}\)</span> with <span class="math inline">\(F=P\Delta\)</span></p>
+<p>where F stores the factor scores and Q stores the loadings. And Q can be expressed as:</p>
+<p><span class="math display">\[Q=[Q_{[1]}^{T}...Q_{[k]}^{T}...Q_{[K]}^{T}]^{T}\]</span></p>
+</div>
+<div id="main-function-mfa---part-1" class="slide section level1">
+<h1>Main function: mfa - part 1</h1>
+<p>We provide a main function <code>mfa()</code> in our package:</p>
+<p><code>mfa(data, sets, ncomps=NULL, center=TRUE, scale=TRUE)</code> where the arguments are:</p>
 <ul>
 <li>data: data set (matrix or data frame)</li>
 <li>sets: list of character or numeric vectors indicating the sets of variables</li>
@@ -51,26 +89,26 @@ Dan Shen, Letian Shi, Qianyi Yang, Xin Wang, Yue You
 <li>scale: either a logical value or a numeric vector determining how the scaling of active variables is performed (after centering)</li>
 </ul>
 </div>
-<div id="main-function-mfa-part-2" class="slide section level1">
-<h1>Main function: mfa-part 2</h1>
-<p>mfa function should return on object of class <em>“mfa”</em> with the following elements:</p>
+<div id="main-function-mfa---part-2" class="slide section level1">
+<h1>Main function: mfa - part 2</h1>
+<p><code>mfa()</code> function should return on object of class <em>“mfa”</em> with the following elements:</p>
 <ul>
 <li>eigen: vector containing the eigenvalues</li>
 <li>common_factor_scores: matrix of common factor scores</li>
 <li>partial_factor_scores: matrix of partial factor scores</li>
 <li>loadings: matrix of loadings</li>
 </ul>
-<p>we also provide other information such as alpha, mass=rep(1/nrow,nrow), dim=ncomps and the complete scaled matrix for the user.</p>
+<p>We also provide other information such as alpha, <code>mass=rep(1/nrow,nrow)</code>, <code>dim=min(ncomps,length(eigen))</code> and the complete scaled matrix for the user.</p>
 </div>
-<div id="generic-methods" class="slide section level1">
-<h1>Generic Methods</h1>
-<p>print() method: displays 3 tables of basic information:</p>
+<div id="generic-methods---print-and-plot" class="slide section level1">
+<h1>Generic Methods - print and plot</h1>
+<p><code>print()</code> method: displays 3 tables of basic information:</p>
 <ul>
 <li>Table 1: Singular Values and Eigen Values;</li>
 <li>Table 2. First Two Dimensions of Common Factor Scores;</li>
 <li>Table 3. Partial Factor Scores of Any Assessor.</li>
 </ul>
-<p>plot() method: displays 4 graphs with users’ choice of any two dimenstions:</p>
+<p><code>plot()</code> method: displays 4 graphs with users’ choice of any two dimenstions:</p>
 <ul>
 <li>Graph 1: Common Factor Scores;</li>
 <li>Graph 2: Partial Factor Scores;</li>
@@ -80,7 +118,7 @@ Dan Shen, Letian Shi, Qianyi Yang, Xin Wang, Yue You
 </div>
 <div id="bootstrap" class="slide section level1">
 <h1>Bootstrap</h1>
-<p>Bootstrap.mfa(X, L) method: computes the bootstrapped eatimate of the factor scores as well as the bootstrap ratio The input parameters are:</p>
+<p><code>Bootstrap.mfa(X, L)</code> method: computes the bootstrapped eatimate of the factor scores as well as the bootstrap ratio. The input parameters are:</p>
 <ul>
 <li>X: a MFA object</li>
 <li>L: the bootstrap sample size</li>
@@ -95,10 +133,6 @@ Dan Shen, Letian Shi, Qianyi Yang, Xin Wang, Yue You
 <li>Graph 1: Bootstrap ratio plot for Components 1 and 2.</li>
 <li>Graph 2: Bootstrap confidence ellipses plotted on Components 1 and 2.</li>
 </ul>
-</div>
-<div id="mfa-package-introduction" class="slide section level1">
-<h1>MFA package introduction</h1>
-<p>This project is implemented in the form of an R package which provides R functions, user manuel, tests, as well as vignettes. This package is set up on github for collaboration and will be available for public use.</p>
 </div>
 <div id="shiny-app" class="slide section level1">
 <h1>Shiny App</h1>

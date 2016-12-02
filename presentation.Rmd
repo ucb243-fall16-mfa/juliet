@@ -121,6 +121,49 @@ We also provide other information such as alpha, `mass=rep(1/nrow,nrow)`,     `d
 + Graph 3: Loadings rescaled to variance = eigen values;
 + Graph 4: Partial Factor Scores & rescaled Loadings together.
 
+# Other functions
+`summary_eigen(x)`function:returns a data frame including 5 kinds of components about eigenvalues:
+Input:
+
+- x: a MFA object
+
+Output is a data frame including:
+
+- singular value:the square root of eigenvalue
+- eigenvalue: one of the properties contained in the mfa project
+- cumulative1: the cumlulative of the eigenvalues in decreasing series
+- Inertia: the proportion of each eigenvalue to the sum of all eigenvalues
+- cumulative2:the cumlulative of the intertia in decreasing series
+
+`contribution(x,type)`function:returns a data frame including the proportion of contributions of important elements
+Input:
+
+- x: a MFA object
+- type:a character-"observation","variaable" or "table" representing the kind of elements
+
+Output is a data frame including:
+
+- contributionone of one kind of elements to a dimension seperately
+
+`RV(table1,table2)`function:returns a number which is a coefficient to study the between-table structure
+Input:
+
+- table1: a matrixthe
+- table2: a matrix which has the same number of rows as table1
+
+`RV_table(dataset,sets)`function:returns a data frame and the components are the coefficient about the tables.
+Input:
+
+- dataset: a data frame
+- sets: a list of vectors represting different tables
+
+`LG(table1,table2)`function:returns a number which is a coefficient to study the between-table structure
+ LG function is another way to analyze between-table structure besides RV
+Input:
+
+- table1: a matrixthe
+- table2: a matrix which has the same number of rows as table1
+
 # Bootstrap
 `Bootstrap.mfa(X, L)` method: computes the bootstrapped eatimate of the factor scores as well as the bootstrap ratio. The input parameters are:
 

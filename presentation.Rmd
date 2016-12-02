@@ -3,12 +3,12 @@ title: "Stat 243 Final Project"
 author: "Dan Shen, Letian Shi, Qianyi Yang, Xin Wang, Yue You"
 subtitle: Multiple Factor Analysis R package
 output:
+  slidy_presentation: default
+  html_document: default
+  ioslides_presentation: default
   beamer_presentation:
     includes:
       in_header: header.tex
-  html_document: default
-  ioslides_presentation: default
-  slidy_presentation: default
 ---
 
 ```{r, setup, include=FALSE}

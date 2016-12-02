@@ -164,7 +164,7 @@ Input:
 Input:
 
 - dataset: a data frame
-- sets: a list of vectors represting different tables
+- sets: a list of vectors representing different tables
 
 # Other functions - part 4
 

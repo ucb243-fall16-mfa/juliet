@@ -152,4 +152,3 @@ the user with six types of plots, and the user can select which plot to look at.
 For the two scatter plots related to partial factor scores and loadings, the user can choose which two dimensions to plot by adjusting the slider bar, and the plots will update automatically.
 
 ![Shiny App Interface](Shiny_image.png)
-

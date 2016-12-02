@@ -102,7 +102,12 @@ mfa<-function(data,sets,ncomps=NULL,center=TRUE,scale=TRUE){
   P_F<-array()
   dimension<-as.character(1:length(N))
   for (i in 1:length(N)){
+    if (N[i]==1){
+    P_Fi <- (length(N)*alpha[i] * X[,(summation[i]+1):(summation[i]+N[i])] %o% Q[(summation[i]+1):(summation[i]+N[i]),])[,1:min(ncomps,length(eigen))]
+    }
+    else {
     P_Fi <- (length(N)*alpha[i] * X[,(summation[i]+1):(summation[i]+N[i])] %*% Q[(summation[i]+1):(summation[i]+N[i]),])[,1:min(ncomps,length(eigen))]
+    }
     attr(P_F,dimension[i])=P_Fi
   }
 

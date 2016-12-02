@@ -22,3 +22,28 @@ test_that("plot.r with wrong n_assessor inputs",{
 test_that("plot.r with wrong dataset x inputs",{
   expect_error(print.mfa(1:12, n_assessor = -1))
 })
+
+test_that("summary_eigen with wrong mfa x inputs",{
+  expect_error(summary_eigen(1))
+})
+test_that("contribution with wrong mfa x inputs",{
+  expect_error(contribution(1))
+})
+test_that("contribution with wrong type inputs",{
+  expect_error(contribution(review,"wrong_type"))
+})
+test_that("tr with wrong matrix inputs",{
+  expect_error(tr(matrix(c(1,2,3,4,5,6),nrow=2)))
+})
+test_that("RV wiht wrong matrix inputs",{
+  expect_error(RV(matrix(c(1,2,3,4,5,6),nrow=2),matrix(c("1","2","3","4","5","6"),nrow=2)))
+})
+test_that("RV_table with wrong data frame dataset inputs",{
+  expect_error(RV_table(c(1,2,3),sets=NULL))
+})
+test_that("RV_table with wrong list sets inputs",{
+  expect_error(RV_table(review,sets=c(1,2,3)))
+})
+test_that("LG wiht wrong matrix inputs",{
+  expect_error(LG(matrix(c(1,2,3,4,5,6),nrow=2),matrix(c("1","2","3","4","5","6"),nrow=2)))
+})

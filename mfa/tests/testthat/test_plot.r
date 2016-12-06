@@ -1,5 +1,5 @@
 #Read the data from file(You may change the path)
-data_raw<-read.csv("../../data/wines.csv")
+data_raw<-read.csv("../../../data/wines.csv")
 
 #Pick the useful part
 data<-data_raw[,2:54]

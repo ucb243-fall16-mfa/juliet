@@ -6,7 +6,7 @@ source('../R/print.r')
 source('../R/bootstrap.r')
 
 ## ------------------------------------------------------------------------
-data_raw<-read.csv("../data/wines.csv")
+data_raw<-read.csv("../../data/wines.csv")
 #Pick the useful part
 data<-data_raw[,2:54]
 #Make a list store the block division

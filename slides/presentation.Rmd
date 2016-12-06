@@ -122,16 +122,16 @@ We also provide other information such as alpha, `mass=rep(1/nrow,nrow)`,     `d
 + Graph 4: Partial Factor Scores & rescaled Loadings together.
 
 # Plot example - part 1
-![](data/common.png)
+![](common.png)
 
 # Plot example - part 2
-![](data/bfs.png)
+![](bfs.png)
 
 # Plot example - part 3
-![](data/loading.png)
+![](loading.png)
 
 # Plot example - part 4
-![](data/Rplot.png)
+![](Rplot.png)
 
 # Other functions - part 1
 `summary_eigen(x)`function: returns a data frame including 5 kinds of components about eigenvalues.
@@ -205,10 +205,10 @@ Graphs:
 - Graph 2: Bootstrap confidence ellipses plotted on Components 1 and 2.
 
 # Bootstrap - Graph 1
-![](data/Boot1.png)
+![](Boot1.png)
 
 # Bootstrap - Graph 2
-![](data/Boot2.png) 
+![](Boot2.png) 
  
 # Shiny App - part 1
 We develop a shiny app that provides an interactive visualizeation for the results from MFA. We provide
@@ -225,4 +225,4 @@ For the two scatter plots related to partial factor scores and loadings, the use
 
 # Shiny App - part 2
 
-![](Shiny-App/Shiny_image.png)
+![](Shiny_image.png)

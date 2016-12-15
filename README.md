@@ -11,3 +11,4 @@ Install the package with the following command to access documentation, etc.
 devtools::install_git("https://github.com/ucb243-fall16-mfa/juliet", "mfa")
 ```
 
+Shiny App: [yangxiaoxi.shinyapps.io/shiny-app/](https://yangxiaoxi.shinyapps.io/shiny-app/)
